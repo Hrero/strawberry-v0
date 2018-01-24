@@ -1,0 +1,52 @@
+
+  <view class="PerSoncon">
+    
+  <view>
+    <view class="PersonUserhead">
+      <view class="userinfo">
+        <image class="userinfo-avatar" src="{{ $goinheader$userInfo.avatarUrl }}" background-size="cover"/>
+        <view class="userinfo-nickname">{{ $goinheader$userInfo.nickName }}</view>
+      </view>
+      <view class="persontext">已在草莓书院阅读 坚持提升自我</view>
+    </view>
+    
+  <view>
+    <view class="personinfo">
+      <view class="fl perInfo">
+        <view class="perNum">10</view>
+        <view class="perBook">Books(已读书籍)</view>
+      </view>
+      <view class="fr perInfo peryou">
+        <view class="perline"/>
+        <view class="perNum">10</view>
+        <view class="perBook">Books(已读书籍)</view>
+      </view>
+    </view>
+  </view>
+
+    <!--<view class="personinfo">-->
+      <!--<view class="fl perInfo">-->
+        <!--<view class="perNum">10</view>-->
+        <!--<view class="perBook">Books(已读书籍)</view>-->
+      <!--</view>-->
+      <!--<view class="fr perInfo">-->
+        <!--<view class="perNum">10</view>-->
+        <!--<view class="perBook">Books(已读书籍)</view>-->
+      <!--</view>-->
+    <!--</view>-->
+  </view>
+
+    <view class="weekWide">
+      <view  wx:if="{{isShow}}">
+        <view>恭喜XXX完成任务</view>
+        <view class="WeekschoolInfo">您是全院的第二名哦！</view>
+      </view>
+      <view  wx:else class="weekWeiread">
+        <view>未阅读任务不能补卡哦</view>
+        <view>分享给好友一起学</view>
+        <view>打卡不怕忘</view>
+      </view>
+      <button class="weekShareBtn" data-id="me" open-type="share" bindtap="shareBtn">分享</button>
+      <view class="weekShareBackBtn" bindtap="goBackWeekPage">{{backTxt}}</view>
+    </view>
+  </view>

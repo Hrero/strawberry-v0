@@ -1,0 +1,116 @@
+<style lang="less" scope="scope">
+  .PerSoncon{background: #f7f7f7;padding: 80rpx 60rpx 0;}
+  .examSwiperTest{width: 100%;}
+  .swiper{line-height: 95rpx;position: relative;}
+  .examSwiperTitle{color: #666666;font-size: 31rpx;}
+  .examSwiperTest{color: #666666;font-size: 27rpx;line-height: 116rpx;}
+  .examSwiperTest image{width: 30rpx;}
+  .weekSwiperAnswer{display: flex;align-items: center;}
+  .weekSwiperNum{margin: 0 30rpx 0 0;}
+  .weekSwiperDown image{width: 28rpx;}
+  .weekSwiperDown{font-size: 28rpx;color: #cccccc;width: 100%;margin-top: 60rpx;overflow: hidden;}
+  .weekLeftorigin{width: 20%;}
+  .weekSwiperCenter{width: 60%;text-align: center;}
+  .weekSwiperRight{width: 20%;}
+  .weekTxtColor{color: #8cbcf1;}
+  .weekSwiperCommit{background: #ff6d70;height: 80rpx;line-height: 80rpx;border-radius: 40rpx;margin: 70rpx auto;color: #fff;font-size: 28rpx;text-align: center;}
+  .examresultAnswer{font-size: 26rpx;color: #666666;overflow: hidden;}
+  .examPoint{width: 20rpx;height: 20rpx;float: left;margin-right: 20rpx;}
+  .examPointBlue{width: 20rpx;height: 20rpx;background: #ff8083;border-radius: 50%;}
+  .examPointred{width: 20rpx;height: 20rpx;background: #8cbcf1;border-radius: 50%;}
+  .examArcTrue{display: flex;align-items: center;float: left;margin: 0 63rpx;}
+  .examArcYour{display: flex;align-items: center;float: left;margin: 0 63rpx;}
+  .weekexamTOF image{width:200rpx;position: absolute;top: -20rpx;right: 0;}
+</style>
+<template>
+  <view class="PerSoncon">
+    <view class="swiper">
+      <view class="weekexamTOF">
+        <image mode="widthFix" src="/images/week/true@3x.png"></image>
+        <!--<image mode="widthFix" src="/images/week/false@3x.png"></image>-->
+      </view>
+      <view class="examSwiperTitle">1.以下关于绩效的说法正确得是？</view>
+
+      <view class="examSwiperTest">
+        <view class="weekSwiperAnswer">
+          <text class="weekSwiperNum">A</text><text class="weekSwiperTxt">放开胸怀想笑就笑</text>
+        </view>
+        <view class="weekSwiperAnswer">
+          <text class="weekSwiperNum">A</text><text class="weekSwiperTxt">放开胸怀想笑就笑</text>
+        </view>
+        <view class="weekSwiperAnswer">
+          <text class="weekSwiperNum">A</text><text class="weekSwiperTxt">放开胸怀想笑就笑</text>
+        </view>
+        <view class="weekSwiperAnswer">
+          <text class="weekSwiperNum">A</text><text class="weekSwiperTxt">放开胸怀想笑就笑</text>
+        </view>
+      </view>
+      <view class="examresultAnswer">
+        <view class="examArcTrue">
+          <view class="examPointBlue examPoint"></view>
+          <text>正确答案：</text><text>A</text>
+        </view>
+        <view class="examArcYour">
+          <view class="examPointred examPoint"></view>
+          <text>您的答案：</text><text>A</text>
+        </view>
+      </view>
+    </view>
+    <view class="weekSwiperDown">
+      <view class="weekLeftorigin fl">
+        <image mode="widthFix" src="/images/week/zuojiantou@3x.png"></image>
+        <text>上一题</text>
+      </view>
+      <view class="weekSwiperCenter fl">
+        当前题目10/1
+      </view>
+      <view class="weekSwiperRight fl weekTxtColor">
+        <text>下一题</text>
+        <image mode="widthFix" src="/images/week/youjiantou@3x.png"></image>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Toast from 'wepy-com-toast'
+  import testMixin from '../mixins/test'
+
+  export default class SharePerson extends wepy.page {
+
+    config = {
+      navigationBarTitleText: '答案页'
+    }
+
+    components = {
+
+    }
+
+    mixins = [testMixin]
+
+    data = {
+      imgUrls: [
+        'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+        'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
+        'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
+      ],
+      indicatorDots: true,
+      autoplay: false,
+      interval: 5000,
+      duration: 1000,
+      currentTab:1
+    }
+
+    methods = {
+
+      nextSwiper(){
+        this.currentTab ++;
+      }
+
+    }
+    onLoad(){
+
+    }
+  }
+</script>

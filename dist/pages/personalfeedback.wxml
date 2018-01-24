@@ -1,0 +1,8 @@
+
+  <view class="wrap">
+    <view class="feedtitle">反馈内容</view>
+    <view class="section">
+      <textarea class="feedBlock" data-inputValue="{{inputValue}}" bindinput="bindKeyInput" placeholder-style="color:#bbbbbb;font-size:28rpx;" placeholder="请留下您的宝贵意见!" auto-focus/>
+    </view>
+    <view class="readArticleBtn" bindtap="feedback">提交反馈</view>
+  </view>

@@ -1,0 +1,92 @@
+<style lang="less" scope="scope">
+  .wrap{width: 100%;background: #ffffff;}
+  .wrap image{width: 100%;}
+  .title{color: #ff686b;font-size: 28rpx;margin-bottom: 30rpx;}
+  .container .col{color: #ff686b;}
+  .nlinetext{color: #666666;font-size: 28rpx;line-height: 42rpx;margin-bottom: 30rpx;}
+</style>
+<template>
+  <view class="container">
+    <view class="block">
+      <view class="title">一、 草莓书院简介</view>
+      <view class="nlinetext">草莓书院是杭州二加一网络科技有限公司旗下的一个在线碎片化教育项目，目前正在发起一个“六个月遇见全新自己”行动计划，草莓书院的宗旨是帮助每个想读书，愿意读书的人，通过六个月的学习时光来提升自己。我们精选了二十四本好书，涵盖职场、人生、国学、社交、金融等方面，多方面提升自己，让自己在职场和生活中更游刃有余。大家在这里一起学习，分享经验，交流心得，成长的同时还可以结交新朋友。
+      </view>
+    </view>
+    <view class="block">
+      <view class="title">二、 学习规则</view>
+      <view class="nlinetext">
+        读书计划每六个月为一个周期。在沉淀学习期间，学员按照我们的学习大纲进行阅读学习，每个月的阅读主题和详细书单会提前在教务系统公布。
+      </view>
+      <view class="title">我们计划每周完成一本书的学习</view>
+      <view class="nlinetext">
+        1. 周一至周五每天0:00，教务系统会发布阅读任务，学员需要在当天完成阅读，完成情况将计入个人考勤分数。
+      </view>
+      <view class="nlinetext">
+        2. 周六复习，我们会为学员总结这本书的精髓作为复习内容。
+      </view>
+      <view class="nlinetext">
+        3. 周日测试，每周最后一天进行测验，来检测您的学习成果，成绩将计入个人周测分数。
+      </view>
+    </view>
+    <view class="block">
+        <view class="title">三、 学员考核</view>
+        <view class="nlinetext">
+          草莓书院将通过学分来考核学员的学习行为，且将作为日后毕业的依据，请认真对待。
+        </view>
+        <view class="title">学分考核</view>
+        <view class="nlinetext">
+          学分是对学员学习行为的考核，努力学习的学员将获得更多的学分，对学员的学分考核以周综合成绩来评定，每周更新一次。
+        </view>
+        <view class="nlinetext col">
+          周综合成绩 = 出勤分 * 60% + 周测成绩 * 40%
+        </view>
+        <view class="title">综合成绩细则</view>
+        <view class="nlinetext ">
+          出勤分: 与每天是否完成当天阅读任务有关，要求学员每天坚持阅读。
+        </view>
+        <view class="nlinetext">
+          周测成绩: 与学员对知识点的把握程度有关，要求学员对学习的内容进行回顾，草莓书院每周将进行一次周测。
+        </view>
+        <view class="nlinetext">
+          学习成就: 学员对一本完整书籍的阅读进度达到100%时，即可判定为完成一本读书数成就
+        </view>
+    </view>
+    <view class="block">
+      <view class="title">四、 其他事项</view>
+      <view class="nlinetext">
+        如果有特殊问题、重要反馈、企业合作，可添加草莓书院官方微信号：草莓书院客服（caomeikf）
+      </view>
+    </view>
+
+  </view>
+</template>
+
+<script>
+
+  import wepy from 'wepy'
+  import Toast from 'wepy-com-toast'
+  import testMixin from '../mixins/test'
+
+  export default class enchiridion extends wepy.page {
+
+    config = {
+      navigationBarTitleText: '学员手册'
+    }
+
+    components = {
+    }
+
+    mixins = [testMixin]
+
+    data = {
+    }
+
+    methods = {
+    }
+
+    onLoad(option){
+
+    }
+
+  }
+</script>

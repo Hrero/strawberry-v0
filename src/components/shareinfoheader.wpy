@@ -1,0 +1,90 @@
+<style lang="less" scope="scope">
+  .userinfo-avatar {  width: 80rpx;  height: 80rpx;  border-radius: 50%;  }
+  .userinfo-nickname {  color: #aaa;  }
+  .PayImgIcon{width: 80%;margin:0 auto;overflow: hidden;display: flex;align-items: center;margin-top: 25rpx;}
+  .PayImgIcon .PayimgView{float: left; width: 85rpx;display: block;text-align: center;}
+  .PayimgView image{width: 100%;}
+   .PayImgIcon .widthImg{width: 40rpx;}
+  .shareWrapHead{width: 100%;}
+  .payLine{width: 70rpx;height: 0rpx;border: 1rpx solid #8f8f8f;float: left;box-sizing: border-box;margin: 0 10rpx;}
+  .payTxtName .payTxtLine{width: 70rpx;height: 1rpx;border: 0px solid #8f8f8f;float: left;box-sizing: border-box;margin: 0 9rpx;}
+  .payTxtName{width: 80%;margin:0 auto; overflow: hidden;text-align: center;margin-top: 25rpx;}
+  .payTxtName view{float: left;width: 85rpx;color: #666666;overflow: hidden;font-size:24rpx; }
+  .payUserInfo{overflow: hidden;width: 80%;padding: 60rpx 10% 0 ;}
+</style>
+<template>
+  <view class="shareWrapHead">
+    <view class="payUserInfo">
+      <view class="userinfo">
+        <image class="userinfo-avatar fl" src="{{ userInfo.avatarUrl }}" background-size="cover"/>
+        <view class="userinfo-nickname fr">{{ userInfo.nickName }}</view>
+      </view>
+    </view>
+    <view class="PayImgIcon">
+      <view class="PayimgView"><image class="{{ title== 'sharepay' || 'sharereport' || 'sharenondivision' || 'sharetermbegins'?'widthImg':''}}" mode="widthFix" src="{{payimg[0]}}"></image></view>
+      <view class="payLine"></view>
+      <view class="PayimgView"><image class="{{ title == 'sharereport' || title == 'sharenondivision' || title == 'sharetermbegins' ?'widthImg' : '' }}" mode="widthFix" src="{{payimg[1]}}"></image></view>
+      <view class="payLine"></view>
+      <view class="PayimgView"><image  class="{{ title == 'sharenondivision' || title == 'sharetermbegins'?'widthImg' : '' }}" mode="widthFix" src="{{payimg[2]}}"></image></view>
+      <view class="payLine"></view>
+      <view class="PayimgView"><image  class="{{ title == 'sharetermbegins'?'widthImg' : '' }}" mode="widthFix" src="{{payimg[3]}}"></image></view>
+    </view>
+    <view class="payTxtName">
+      <view>付费</view>
+      <view class="payTxtLine"></view>
+      <view>报到</view>
+      <view class="payTxtLine"></view>
+      <view>分班</view>
+      <view class="payTxtLine"></view>
+      <view>开学</view>
+    </view>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  // import abc from 'abc'
+
+  export default class Infoheader extends wepy.component {
+    props = ["title"]
+
+    data = {
+      userInfo: {
+        nickName:'',
+        avatarUrl:''
+      },
+      payimg:[
+        '/images/startschool/fufei@3x.png',
+        '/images/startschool/weibaoming@3x.png',
+        '/images/startschool/weifenban@3x.png',
+        '/images/startschool/weikaixue@3x.png',
+      ]
+    }
+
+    onLoad(){
+
+      let self = this
+      if( self.title == 'sharereport' ){
+        self.payimg[1] = '/images/startschool/baoming@3x.png'
+      }else if( self.title == 'sharenondivision' ){
+        self.payimg[1] = '/images/startschool/baoming@3x.png'
+        self.payimg[2] = '/images/startschool/fenban@3x.png'
+      }else if( self.title == 'sharetermbegins' ){
+        self.payimg[1] = '/images/startschool/baoming@3x.png'
+        self.payimg[2] = '/images/startschool/fenban@3x.png'
+        self.payimg[3] = '/images/startschool/kaixue@3x.png'
+      }
+
+      wx.getUserInfo({
+        success: function(res) {
+          let userInfo = res.userInfo
+          let nickName = userInfo.nickName
+          let avatarUrl = userInfo.avatarUrl
+
+          self.userInfo.nickName = nickName;
+          self.userInfo.avatarUrl = avatarUrl;
+          self.$apply()
+        }
+      })
+    }
+    }
+</script>

@@ -1,0 +1,7 @@
+
+  <view class="wrap">
+    <view class="neiwrap"><image class="imagefankui" mode="widthfix" src="/images/person/fankui@3x.png"/></view>
+    <view class="texttop">您的意见已经提交成功!</view>
+    <view class="textbottom">我们将及时处理</view>
+    <view class="readArticleBtn" bindtap="commitBtn">返回个人中心</view>
+  </view>

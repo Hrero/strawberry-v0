@@ -1,0 +1,76 @@
+<style lang="less" scope="scope">
+  .userinfo {  display: flex;  flex-direction: column;  align-items: center;  }
+  .userinfo-avatar {  width: 200rpx;  height: 200rpx;  border-radius: 50%; margin-top: 0rpx;margin-bottom: 30rpx; }
+  .userinfo-nickname {  color: #666666;  }
+  .persontext{color: #666666;font-size: 26rpx;text-align: center;margin-top: 20rpx;}
+  .PersonUserhead{padding: 30rpx 0 30rpx;position: relative;}
+  /*.headUserImg{width:100%;}*/
+  /*.personinfo{width: 80%;text-align: center;overflow: hidden;background: #fff;padding: 0 10%;}*/
+  /*.perNum{color: #ff686b;line-height: 90rpx;}*/
+  /*.perBook{font-size: 20rpx;margin-bottom: 30rpx;}*/
+  /*.perInfo{width: 50%;}*/
+</style>
+<template>
+  <view>
+    <view class="PersonUserhead">
+      <view class="userinfo">
+        <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover"/>
+        <view class="userinfo-nickname">{{ userInfo.nickName }}</view>
+      </view>
+      <view class="persontext">已在草莓书院阅读 坚持提升自我</view>
+    </view>
+    <readaycount></readaycount>
+    <!--<view class="personinfo">-->
+      <!--<view class="fl perInfo">-->
+        <!--<view class="perNum">10</view>-->
+        <!--<view class="perBook">Books(已读书籍)</view>-->
+      <!--</view>-->
+      <!--<view class="fr perInfo">-->
+        <!--<view class="perNum">10</view>-->
+        <!--<view class="perBook">Books(已读书籍)</view>-->
+      <!--</view>-->
+    <!--</view>-->
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  import readaycount from '../components/readaycount'
+  // import abc from 'abc'
+
+  export default class goinheader extends wepy.component {
+
+
+    components = {
+      readaycount:readaycount
+    }
+
+    data = {
+      userInfo: {
+        nickName:'',
+        avatarUrl:''
+      }
+    }
+    onLoad(){
+
+      let self = this
+//      console.log(this.$parent)
+//      this.$parent.getUserInfo(function (userInfo) {
+//        if (userInfo) {
+//          self.userInfo = userInfo
+//        }
+//        self.$apply()
+//      })
+      wx.getUserInfo({
+        success: function(res) {
+          let userInfo = res.userInfo
+          let nickName = userInfo.nickName
+          let avatarUrl = userInfo.avatarUrl
+
+          self.userInfo.nickName = nickName;
+          self.userInfo.avatarUrl = avatarUrl;
+          self.$apply()
+        }
+      })
+    }
+  }
+</script>

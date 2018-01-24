@@ -1,0 +1,41 @@
+
+  <view class="PerSoncon">
+    <swiper indicator-dots="{{indicatorDots}}" current="{{currentTab}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <block  wx:for="{{exam}}" wx:key="*this" wx:for-index="index" wx:for-item="item">
+        <swiper-item>
+
+          <view class="swiper" data-id="{{index}}">
+            <view class="examSwiperTitle">{{index+1}}.{{item.title}}</view>
+            <view class="examSwiperTest">
+              <block wx:for="{{item.text}}" wx:for-index="idx" wx:for-item="itemName" wx:key="id">
+                <!--<examanswerlist v-bind:answerList.once="itemName" v-bind:English.once="item" v-bind:index.once="idx" ></examanswerlist>-->
+                <view class="weekSwiperAnswer" bindtap="chooseThis" data-id="{{idx}}" data-choosearray="{{chooseArray}}" data-parentid="{{index}}">
+
+                  <image mode="widthFix" src="{{ chooseArray[index] == idx?'/images/week/choose@3x.png':'/images/week/nochoose@3x.png'}}"/>
+
+                  <text class="weekSwiperNum">{{item.nomal[index]}}</text><text class="weekSwiperTxt">{{itemName}}</text>
+
+                </view>
+
+              </block>
+            </view>
+          </view>
+
+        </swiper-item>
+      </block>
+    </swiper>
+      <view class="weekSwiperDown">
+        <view class="weekLeftorigin fl weekTxtColor">
+          <image mode="widthFix" src="{{jtSrcFl}}"/>
+          <text class="{{disabled && (currentTab == 0)?'disabled ccolor':''}}" bindtap="prevSwiper">上一题</text>
+        </view>
+        <view class="weekSwiperCenter fl">
+          当前题目{{listLength +'/'+(currentTab+1)}}
+        </view>
+        <view class="weekSwiperRight fl weekTxtColor">
+          <text class="{{disabled && (currentTab == listLength-1)?'disabled ccolor':''}}" bindtap="nextSwiper">下一题</text>
+          <image mode="widthFix" src="{{jtSrcRl}}"/>
+        </view>
+      </view>
+      <view class="weekSwiperCommit  {{commitStatus?'':'cBack disabled'}} " bindtap="commitText">交卷</view>
+  </view>

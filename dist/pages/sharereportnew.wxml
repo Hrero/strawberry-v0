@@ -1,0 +1,72 @@
+
+  
+  <view class="shareWrapHead">
+    <view class="payUserInfo">
+      <view class="userinfo">
+        <image class="userinfo-avatar fl" src="{{ $infoHeader$userInfo.avatarUrl }}" background-size="cover"/>
+        <view class="userinfo-nickname fr">{{ $infoHeader$userInfo.nickName }}</view>
+      </view>
+    </view>
+    <view class="PayImgIcon">
+      <view class="PayimgView"><image class="{title == sharepay ? 'widthImg' : ''}" mode="widthFix" src="{{$infoHeader$payimg[0]}}"/></view>
+      <view class="payLine"/>
+      <view class="PayimgView"><image class="{title == sharereport ? 'widthImg' : ''}" mode="widthFix" src="{{$infoHeader$payimg[1]}}"/></view>
+      <view class="payLine"/>
+      <view class="PayimgView"><image class="" mode="widthFix" src="{{$infoHeader$payimg[2]}}"/></view>
+      <view class="payLine"/>
+      <view class="PayimgView"><image class="" mode="widthFix" src="{{$infoHeader$payimg[3]}}"/></view>
+    </view>
+    <view class="payTxtName">
+      <view>付费</view>
+      <view class="payTxtLine"/>
+      <view>报到</view>
+      <view class="payTxtLine"/>
+      <view>分班</view>
+      <view class="payTxtLine"/>
+      <view>开学</view>
+    </view>
+  </view>
+
+  <view class="payReportDis">请您认真地填写以下信息，我们会为您制定合适的课程。</view>
+  <view class="payConWrap">
+    <view class="payContentList">
+      <image class="payReImg" mode="widthFix" src="/images/startschool/xingming@3x.png"/>
+      <input class="inputAuto" placeholder="请输入名字" auto-focus/>
+    </view>
+    <view class="payContentList">
+      <image class="payReImg" mode="widthFix" src="/images/startschool/xingbie@3x.png"/>
+
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="picker">
+          <!--当前选：{{array[index]}}-->
+          <input class="inputAuto" placeholder="请选择性别" auto-focus value="{{array[index]}}"/>
+        </view>
+      </picker>
+    </view>
+    <view class="payContentList">
+      <image class="payReImg" mode="widthFix" src="/images/startschool/shouji@3x.png"/>
+      <input class="inputAuto" placeholder="请输入手机号" auto-focus/>
+    </view>
+    <view class="payContentList Payposition">
+      <image class="payReImg" mode="widthFix" src="/images/startschool/yanzhengma@3x.png"/>
+      <input class="inputAuto" placeholder="请输入验证码" auto-focus/>
+      <view class="PayCode" bindtap="getCode">{{codeText}}</view>
+    </view>
+    <view class="payContentList">
+      <image class="payReImg" mode="widthFix" src="/images/startschool/dizhi@3x.png"/>
+      <input class="inputAuto" placeholder="请输入所在地" auto-focus/>
+    </view>
+    <view class="payContentList">
+      <image class="payReImg" mode="widthFix" src="/images/startschool/nianlingduan@3x.png"/>
+      <input class="inputAuto" placeholder="请选择年龄段" auto-focus/>
+    </view>
+    <view class="payContentList">
+      <image class="payReImg" mode="widthFix" src="/images/startschool/zhiwei@3x.png"/>
+      <input class="inputAuto" placeholder="学士/职场人员" auto-focus/>
+    </view>
+    <view class="payContentList">
+      <image class="payReImg" mode="widthFix" src="/images/startschool/xueli@3x.png"/>
+      <input class="inputAuto" placeholder="请选择学历" auto-focus/>
+    </view>
+  </view>
+  <button class="FinishBtn">完成报道</button>

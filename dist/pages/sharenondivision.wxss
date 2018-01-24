@@ -1,0 +1,2 @@
+@import "./../components/shareinfoheader.wxss";
+.DivisionBlock{font-size:30rpx;text-align:center}.NonDivTitle{color:#999999;margin-top:90rpx;margin-bottom:120rpx}.ShareHeight{line-height:54rpx}.Shareclo{color:#999999;line-height:62rpx}.ShareGoTop{margin-top:90rpx}.shareTop{margin-top:60rpx}.DivisionImg{width:100%;margin-top:80rpx}.DivisionImg image{width:100%}

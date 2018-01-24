@@ -1,0 +1,88 @@
+<style lang="less" scope="scope">
+  @import "../wxParse/wxParse.wxss";
+  .PerSoncon{background: #f7f7f7;}
+  .readArticleBtn{}
+</style>
+<template>
+  <view class="container">
+    <import src="../wxParse/wxParse.wxml"/>
+    <!--这里data中article为bindName-->
+    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+    <appCommitbtn  @goReadSuccess.user="goReadSuccess"></appCommitbtn>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Toast from 'wepy-com-toast'
+  import appCommitbtn from '../components/appcommitbtn'
+  import testMixin from '../mixins/test'
+  import WxParse from '../wxParse/wxParse.js'
+
+  export default class readingarticles extends wepy.page {
+
+    config = {
+      navigationBarTitleText: '读书页'
+    }
+
+    components = {
+      appCommitbtn: appCommitbtn,
+    }
+
+    mixins = [testMixin]
+
+    data = {
+      userInfo: {
+        nickName:'',
+        avatarUrl:''
+      },
+      option:null,
+      backTxt:null
+    }
+
+    methods = {
+      goReadSuccess(){
+        wx.navigateTo({
+          url: '/pages/weekreadsuccess?text='+this.option.index
+        })
+      }
+    }
+
+    onLoad(option){
+      this.option = option;
+      if( this.option.index == 1 ){
+        this.$broadcast('Text', '已打卡，查看名次')
+      }else if( this.option.index == 2 ){
+        this.$broadcast('Text', '好友提醒 打卡不怕忘')
+      }else if( this.option.index == 3 ){
+        this.$broadcast('Text', '读完打卡')
+      }else{}
+
+      var article = '<div style="color:red">我是<br>HTML代码</div>';
+      /**
+       * WxParse.wxParse(bindName , type, data, target,imagePadding)
+       * 1.bindName绑定的数据名(必填)
+       * 2.type可以为html或者md(必填)
+       * 3.data为传入的具体数据(必填)
+       * 4.target为Page对象,一般为this(必填)
+       * 5.imagePadding为当图片自适应是左右的单一padding(默认为0,可选)
+       */
+      var that = this;
+      WxParse.wxParse('article', 'html', article, that, 5);
+
+      let self = this;
+      wx.getUserInfo({
+        success: function(res) {
+          let userInfo = res.userInfo
+          let nickName = userInfo.nickName
+          let avatarUrl = userInfo.avatarUrl
+
+          self.userInfo.nickName = nickName;
+          self.userInfo.avatarUrl = avatarUrl;
+          self.$apply()
+
+        }
+      })
+    }
+  }
+</script>

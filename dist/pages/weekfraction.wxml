@@ -1,0 +1,17 @@
+
+  <view class="container">
+    <!-- canvas.wxml -->
+    <view class="canvasDraw">
+      <canvas id="first" style="width:100%;height:400px;" canvas-id="firstCanvas"/>
+      <view class="weekcount">
+        <view class="counttoptxt">本次考试</view>
+        <view><text class="num">{{score}}</text></view>
+        <text class="fen">分</text>
+      </view>
+    </view>
+    
+<view>
+  <view class="readArticleBtn" bindtap="$appcommitbtn$go">{{$appcommitbtn$Text}}</view>
+</view>
+
+  </view>

@@ -1,0 +1,54 @@
+<style lang="less" scope="scope">
+  .wrap{width: 84%;background: #f7f7f7;padding: 60rpx 8%;position: relative;}
+  .feedtitle{color:#666666;font-size: 32rpx;margin-bottom: 30rpx;}
+  .feedBlock{width: 500rpx;height: 690rpx;border: 1px solid #cccccc;padding: 40rpx 60rpx;font-size: 28rpx;}
+  .readArticleBtn{ width: 100%;background: #fd696e;height: 80rpx;line-height: 80rpx;text-align: center;color: #fff;font-size: 28rpx;border-radius: 40rpx;margin:  180rpx auto 0;}
+  .imagefankui{width: 470rpx;position: absolute;left: 160rpx;top: 200rpx;}
+  .texttop{font-size: 40rpx;margin-top:540rpx;text-align:center;left: 200rpx;color: #666666;}
+  .textbottom{font-size: 40rpx;margin-top:50rpx;text-align:center;left: 200rpx;color: #666666;}
+</style>
+<template>
+  <view class="wrap">
+    <view class="neiwrap"><image class="imagefankui" mode="widthfix" src="/images/person/fankui@3x.png"></image></view>
+    <view class="texttop">您的意见已经提交成功!</view>
+    <view class="textbottom">我们将及时处理</view>
+    <view class="readArticleBtn" @tap="commitBtn">返回个人中心</view>
+  </view>
+</template>
+
+<script>
+
+  import wepy from 'wepy'
+  import Toast from 'wepy-com-toast'
+  import testMixin from '../mixins/test'
+
+  export default class feedbacksuccess extends wepy.page {
+
+    config = {
+      navigationBarTitleText: '反馈成功页'
+    }
+
+    components = {
+    }
+
+    mixins = [testMixin]
+
+    data = {
+      focus: false,
+      inputValue: '',
+    }
+
+    methods = {
+      commitBtn(){
+        wx.reLaunch({
+          url: '/pages/personalcenter'
+        })
+      }
+    }
+
+    onLoad(option){
+
+    }
+
+  }
+</script>

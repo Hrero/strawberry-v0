@@ -1,0 +1,97 @@
+<style lang="less" scope="scope">
+  .PerSoncon{background: #f7f7f7;}
+  .perTiao{margin-top: 22rpx;background: #fff;padding-bottom: 40rpx;}
+  .perTitiao{color: #ff686b;font-size: 30rpx;line-height: 120rpx;text-align: center;}
+  .personImg{width: 175rpx;}
+  .personImgdis{font-size: 23rpx;color: #808080;}
+  .PersonBook{text-align: center;}
+  .perDownBlock{width: 85%;margin: 0 auto;overflow: hidden;}
+  .perBzy{width: 50%;font-size: 25rpx;color: #333333;line-height: 43rpx;}
+  .bookDiscrp{width: 80%;}
+  .bookCount{width: 20%;}
+  .Bookover{overflow: hidden}
+  .personTiao{width: 100%;padding: 20rpx 0;font-size: 28rpx;}
+  .ReadBookBtn{background: #ff686b;border-radius: 40rpx;text-align: center;line-height: 80rpx;height: 80rpx;width: 630rpx;margin: 20rpx auto 20rpx;color: #fff;}
+</style>
+<template>
+  <view class="PerSoncon">
+    <goinheader></goinheader>
+    <view class="perTiao">
+      <view class="perTitiao">今日头条</view>
+      <view class="perDownBlock">
+        <view class="fl PersonBook perBzy">
+          <image class="personImg" mode="widthFix" src="/images/startschool/book.jpg"></image>
+          <view class="personImgdis">你是人间四月天</view>
+        </view>
+        <view class="fr perBzy">
+          <view class="Bookover">
+            <view class="fl bookCount">NO1.</view>
+            <view class="fr bookDiscrp">你是人间四月天你是人间四月天你是人间四月天你是人间四月天</view>
+          </view>
+        </view>
+        <view class="fr perBzy">
+          <view  class="Bookover">
+            <view class="fl bookCount">NO1.</view>
+            <view class="fr bookDiscrp">你是人间四月天你是人间四月天你是人间四月天你是人间四月天</view>
+          </view>
+        </view>
+        <view class="fr perBzy">
+          <view  class="Bookover">
+            <view class="fl bookCount">NO1.</view>
+            <view class="fr bookDiscrp">你是人间四月天你是人间四月天你是人间四月天你是人间四月天</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="personTiao">
+      <view class="ReadBookBtn">我也要读书</view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Toast from 'wepy-com-toast'
+  import goinHeader from '../components/persongoinheader'
+  import testMixin from '../mixins/test'
+
+  export default class SharePerson extends wepy.page {
+
+    config = {
+      navigationBarTitleText: '新用户分享进来页'
+    }
+
+    components = {
+      goinheader: goinHeader,
+    }
+
+    mixins = [testMixin]
+
+    data = {
+      userInfo: {
+        nickName:'',
+        avatarUrl:''
+      }
+    }
+
+    methods = {
+
+    }
+    onLoad(){
+
+      let self = this
+      wx.getUserInfo({
+        success: function(res) {
+          let userInfo = res.userInfo
+          let nickName = userInfo.nickName
+          let avatarUrl = userInfo.avatarUrl
+
+          self.userInfo.nickName = nickName;
+          self.userInfo.avatarUrl = avatarUrl;
+          self.$apply()
+
+        }
+      })
+    }
+  }
+</script>

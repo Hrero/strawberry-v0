@@ -1,0 +1,45 @@
+
+  <view class="paycontainer">
+  
+  <view class="shareWrapHead">
+    <view class="payUserInfo">
+      <view class="userinfo">
+        <image class="userinfo-avatar fl" src="{{ $infoHeader$userInfo.avatarUrl }}" background-size="cover"/>
+        <view class="userinfo-nickname fr">{{ $infoHeader$userInfo.nickName }}</view>
+      </view>
+    </view>
+    <view class="PayImgIcon">
+      <view class="PayimgView"><image class="{{ $infoHeader$title== 'sharepay' || 'sharereport' || 'sharenondivision' || 'sharetermbegins'?'widthImg':''}}" mode="widthFix" src="{{$infoHeader$payimg[0]}}"/></view>
+      <view class="payLine"/>
+      <view class="PayimgView"><image class="{{ $infoHeader$title == 'sharereport' || $infoHeader$title == 'sharenondivision' || $infoHeader$title == 'sharetermbegins' ?'widthImg' : '' }}" mode="widthFix" src="{{$infoHeader$payimg[1]}}"/></view>
+      <view class="payLine"/>
+      <view class="PayimgView"><image class="{{ $infoHeader$title == 'sharenondivision' || $infoHeader$title == 'sharetermbegins'?'widthImg' : '' }}" mode="widthFix" src="{{$infoHeader$payimg[2]}}"/></view>
+      <view class="payLine"/>
+      <view class="PayimgView"><image class="{{ $infoHeader$title == 'sharetermbegins'?'widthImg' : '' }}" mode="widthFix" src="{{$infoHeader$payimg[3]}}"/></view>
+    </view>
+    <view class="payTxtName">
+      <view>付费</view>
+      <view class="payTxtLine"/>
+      <view>报到</view>
+      <view class="payTxtLine"/>
+      <view>分班</view>
+      <view class="payTxtLine"/>
+      <view>开学</view>
+    </view>
+  </view>
+
+  <view class="payDownImg">
+    <image mode="widthFix" src="/images/startschool/jiage@3x.png"/>
+  </view>
+  <!--<view class="payLostTime">您还剩<text>10:00</text>分钟支付，逾时将恢复原价</view>-->
+  <view class="payArgeeTxt">
+
+    <checkbox-group bindchange="checkboxChange">
+      <label>
+        <checkbox value="1" checked="false" class="payCheckBox"/>
+      </label>
+    </checkbox-group>
+
+    我已阅读并同意<text class="paybuleTxt" bindtap="goXieyi">《草莓书院用户协议》</text></view>
+  <button class="payDownBtn" disabled="{{disabled}}" style="background-color:{{ disabled?'#cccccc':'#fd696e' }};color: {{ disabled?'#ffffff':'#ffffff' }};" bindtap="JumpReport">支付学费</button>
+  </view>

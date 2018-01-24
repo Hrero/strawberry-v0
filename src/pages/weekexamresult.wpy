@@ -1,0 +1,235 @@
+<style lang="less" scope="scope">
+  .PerSoncon{background: #f7f7f7;padding: 80rpx 60rpx 0;}
+  .examSwiperTest{width: 100%;}
+  .swiper{line-height: 95rpx;}
+  .examSwiperTitle{color: #666666;font-size: 31rpx;}
+  .examSwiperTest{color: #666666;font-size: 27rpx;line-height: 116rpx;}
+  .examSwiperTest image{width: 30rpx;}
+  .weekSwiperAnswer{display: flex;align-items: center;}
+  .weekSwiperNum{margin: 0 30rpx;}
+  .weekSwiperDown image{width: 28rpx;}
+  .weekSwiperDown{font-size: 28rpx;color: #cccccc;width: 100%;margin-top: 60rpx;overflow: hidden;}
+  .weekLeftorigin{width: 20%;}
+  .weekSwiperCenter{width: 60%;text-align: center;}
+  .weekSwiperRight{width: 20%;}
+  .weekTxtColor{color: #8cbcf1;}
+  .weekSwiperCommit{background: #ff6d70;height: 80rpx;line-height: 80rpx;border-radius: 40rpx;margin: 70rpx auto;color: #fff;font-size: 28rpx;text-align: center;}
+  swiper{height: 650rpx;}
+  .ccolor{color: #cccccc;}
+  .cBack{background: #cccccc;}
+  .examresultAnswer{font-size: 26rpx;color: #666666;overflow: hidden;}
+  .examPoint{width: 20rpx;height: 20rpx;float: left;margin-right: 20rpx;}
+  .examPointBlue{width: 20rpx;height: 20rpx;background: #ff8083;border-radius: 50%;}
+  .examPointred{width: 20rpx;height: 20rpx;background: #8cbcf1;border-radius: 50%;}
+  .examArcTrue{display: flex;align-items: center;float: left;margin: 0 63rpx;}
+  .examArcYour{display: flex;align-items: center;float: left;margin: 0 63rpx;}
+  .weekexamTOF image{width:200rpx;position: absolute;top: 0rpx;right: 0;z-index: 1000;}
+  swiper-item{  overflow: visible;  }
+</style>
+<template>
+  <view class="PerSoncon">
+    <swiper indicator-dots="{{indicatorDots}}" current="{{currentTab}}"
+            autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <block wx:for="{{exam}}" wx:key="*this" wx:for-index="index" wx:for-item="item"  >
+        <swiper-item>
+
+          <view class="swiper" data-id="{{index}}" >
+            <view class="weekexamTOF">
+              <image mode="widthFix" src="/images/week/true@3x.png"></image>
+              <!--<image mode="widthFix" src="/images/week/false@3x.png"></image>-->
+            </view>
+            <view class="examSwiperTitle">{{index+1}}.{{item.title}}</view>
+            <view class="examSwiperTest">
+              <repeat for="{{item.text}}" key="id"  item="itemName" index="idx">
+                <!--<examanswerlist :answerList="itemName" :English="item" :index="idx" ></examanswerlist>-->
+                <view class="weekSwiperAnswer" @tap="chooseThis" data-id="{{idx}}" data-choosearray="{{chooseArray}}" data-parentid="{{index}}">
+
+                  <!--<image mode="widthFix" src="{{ chooseArray[index] == idx  ?'/images/week/choose@3x.png':'/images/week/nochoose@3x.png'}}"></image>-->
+
+                  <text class="weekSwiperNum">{{item.nomal[index]}}</text><text class="weekSwiperTxt">{{itemName}}</text>
+
+                </view>
+
+              </repeat>
+            </view>
+            <view class="examresultAnswer">
+              <view class="examArcTrue">
+                <view class="examPointBlue examPoint"></view>
+                <text>正确答案：</text><text>A</text>
+              </view>
+              <view class="examArcYour">
+                <view class="examPointred examPoint"></view>
+                <text>您的答案：</text><text>A</text>
+              </view>
+            </view>
+          </view>
+
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="weekSwiperDown">
+      <view class="weekLeftorigin fl weekTxtColor">
+        <image mode="widthFix" src="{{jtSrcFl}}"></image>
+        <text class="{{disabled && (currentTab == 0)?'disabled ccolor':''}}" @tap="prevSwiper">上一题</text>
+      </view>
+      <view class="weekSwiperCenter fl">
+        当前题目{{listLength +'/'+(currentTab+1)}}
+      </view>
+      <view class="weekSwiperRight fl weekTxtColor">
+        <text class="{{disabled && (currentTab == listLength-1)?'disabled ccolor':''}}" @tap="nextSwiper">下一题</text>
+        <image mode="widthFix" src="{{jtSrcRl}}"></image>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Toast from 'wepy-com-toast'
+  import examanswerlist from '../components/examanswerlist'
+  import testMixin from '../mixins/test'
+
+  export default class SharePerson extends wepy.page {
+
+    config = {
+      navigationBarTitleText: '答案页'
+    }
+
+    components = {
+      examanswerlist:examanswerlist
+    }
+
+    mixins = [testMixin]
+
+    data = {
+      exam:[{
+        'title':'以下关于绩效的说法正确得是？',
+        'text':['放开胸怀想笑就笑','放开胸怀想笑就笑','放开胸怀想笑就笑1','放开胸怀想笑就笑'],
+        'answer':'A',
+        'nomal':['A','B','C','D']
+      },{
+        'title':'下关于绩效的说法正确得是？',
+        'text':['放开胸怀想笑就笑','放开胸怀想笑就笑','放开胸怀想笑就笑1','放开胸怀想笑就笑'],
+        'answer':'D',
+        'nomal':['A','B','C','D']
+      },{
+        'title':'以下关于绩效的说法正确得是？',
+        'text':['放开胸怀想笑就笑','放开胸怀想笑就笑','放开胸怀想笑就笑1','放开胸怀想笑就笑'],
+        'answer':'B',
+        'nomal':['A','B','C','D']
+      }],
+      chooseArray:[], //用户选择的答案
+      answerArray:[],  //正确答案
+      src:'/images/week/nochoose@3x.png', //对号
+      indicatorDots: false,  //swiper tab
+      autoplay: false,  //swiper自动切换
+      interval: 5000,   //swiper自动切换的时间间隔
+      duration: 1000,  //swiper页码
+      currentTab:0,  //swiper页码
+      listLength:null, //数据总长度
+      disabled:true, //切换箭头状态
+      resultNum:null, //结果分
+      jtSrcFl:'/images/week/zuojiantou@3x.png',  //箭头
+      jtSrcRl:'/images/week/youjiantouc@3x.png', //箭头
+      currentItem:null,  //切换状态
+      commitStatus:false //提交按钮
+    }
+    computed = {
+      resultNum(){
+        let num = 0;
+        let newanswerArray=[];
+
+        for( let i=0;i<this.listLength;i++ ){
+          if( this.answerArray[i] == 'A' ){
+            newanswerArray.push(0);
+          }else if( this.answerArray[i] == 'B' ){
+            newanswerArray.push(1);
+          }else if( this.answerArray[i] == 'C' ){
+            newanswerArray.push(2);
+          }else{
+            newanswerArray.push(3);
+          }
+        }
+        for( let i=0;i<this.listLength;i++ ){
+
+          if( newanswerArray[i] == this.chooseArray[i] ){
+            num++
+          }
+        }
+        num = num/this.listLength;
+
+        return num
+      }
+    }
+    watch = {
+      currentTab (curVal, oldVal) {
+        if( curVal == 0 ){
+          this.disabled = true
+          this.jtSrcFl = '/images/week/zuojiantou@3x.png'
+          this.jtSrcRl = '/images/week/youjiantouc@3x.png'
+        }else if( curVal == this.listLength-1 ){
+          this.disabled = true
+          this.jtSrcRl = '/images/week/youjiantou@3x.png'
+          this.jtSrcFl = '/images/week/zuojiantouc@3x.png'
+        }else{
+          this.disabled = false
+          this.jtSrcFl = '/images/week/zuojiantouc@3x.png'
+          this.jtSrcRl = '/images/week/youjiantouc@3x.png'
+        }
+      },
+      chooseArray (curVal, oldVal){
+        let num = 0;
+        for(var value of curVal){
+          if( value != null ){
+            num++;
+            if( num == this.listLength ){
+              this.commitStatus = true;
+            }
+          }
+        }
+
+      }
+
+    }
+
+    methods = {
+
+      nextSwiper(e){
+        this.currentTab ++;
+      },
+      prevSwiper(){
+        this.currentTab --;
+      },
+      chooseThis(e){
+
+        let id = e.currentTarget.dataset.id;
+        let parentid = e.currentTarget.dataset.parentid;
+        let choosearray = e.currentTarget.dataset.choosearray;
+        choosearray[parentid] = id;
+        this.chooseArray = choosearray;
+
+      },
+      commitText(e){
+        wx.navigateTo({
+          url: `/pages/weekfraction?count=${this.resultNum}`
+        })
+      }
+
+    }
+    onLoad(){
+
+      this.listLength = this.exam.length;
+
+      //循环出答案数组
+      for( let i=0;i<this.listLength;i++ ){
+        this.answerArray[i] = this.exam[i].answer;
+        this.chooseArray[i] = null;
+      }
+
+
+
+
+    }
+
+  }
+</script>

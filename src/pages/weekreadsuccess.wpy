@@ -1,0 +1,113 @@
+<style lang="less" scope="scope">
+  .PerSoncon{background: #f7f7f7;}
+  .weekWide{padding-top: 100rpx;padding-bottom: 60rpx; background: #fff;margin-top: 30rpx;font-size: 36rpx;color: #666666;text-align: center;}
+  .WeekschoolInfo{margin-top: 30rpx;margin-bottom: 140rpx;}
+  .weekShareBtn{width: 80%;height: 80rpx;line-height: 80rpx;color: #fff;font-size: 28rpx;background: #ff686b;margin: 0rpx auto 40rpx;border-radius: 40rpx;}
+  .weekShareBackBtn{width: 80%;height: 80rpx;line-height: 80rpx;color: #fff;font-size: 28rpx;background: #cccccc;margin: 20rpx auto 40rpx;border-radius: 40rpx;}
+  .weekWeiread{line-height: 60rpx;margin-bottom: 100rpx;}
+</style>
+<template>
+  <view class="PerSoncon">
+    <goinheader></goinheader>
+    <view class="weekWide">
+      <view wx:if="{{isShow}}">
+        <view>恭喜XXX完成任务</view>
+        <view class="WeekschoolInfo">您是全院的第二名哦！</view>
+      </view>
+      <view wx:else class="weekWeiread">
+        <view>未阅读任务不能补卡哦</view>
+        <view>分享给好友一起学</view>
+        <view>打卡不怕忘</view>
+      </view>
+      <button class="weekShareBtn" data-id="me" open-type="share" @tap="shareBtn">分享</button>
+      <view class="weekShareBackBtn" @tap="goBackWeekPage">{{backTxt}}</view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Toast from 'wepy-com-toast'
+  import goinHeader from '../components/persongoinheader'
+  import testMixin from '../mixins/test'
+
+  export default class SharePerson extends wepy.page {
+
+    config = {
+      navigationBarTitleText: '读书完成页'
+    }
+
+    components = {
+      goinheader: goinHeader,
+    }
+
+    mixins = [testMixin]
+
+    data = {
+      userInfo: {
+        nickName:'',
+        avatarUrl:''
+      },
+      isShow:false,
+      option:null,
+      backTxt:null
+    }
+
+    methods = {
+      goBackWeekPage(){
+        wx.navigateBack({
+          delta: 2
+        })
+      }
+    }
+    onShareAppMessage(res){
+      if (res.from === 'button') {
+        // 来自页面内转发按钮
+        console.log(res.target)
+      }
+      return {
+        title: '快来看我的读书',
+        path: '/pages/shareperson',
+        success: function(res) {
+          // 转发成功
+        },
+        fail: function(res) {
+          // 转发失败
+        }
+      }
+    }
+    onLoad(option){
+      let that = this;
+      this.option = option;
+      if( this.option.text == 1 || this.option.text == 2){
+        this.isShow = true;
+      }else if( this.option.text == 3 ){
+        this.isShow = false;
+      }else{}
+
+      wx.getStorage({
+        key: 'btnfromPage',
+        success: function(res) {
+          if( res.data == 'education' ){
+            that.backTxt = '返回教务'
+          }else{
+            that.backTxt = '返回本周任务'
+          }
+        }
+      })
+
+      let self = this
+      wx.getUserInfo({
+        success: function(res) {
+          let userInfo = res.userInfo
+          let nickName = userInfo.nickName
+          let avatarUrl = userInfo.avatarUrl
+
+          self.userInfo.nickName = nickName;
+          self.userInfo.avatarUrl = avatarUrl;
+          self.$apply()
+        }
+      })
+    }
+  }
+</script>

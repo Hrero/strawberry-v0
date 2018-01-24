@@ -1,0 +1,57 @@
+
+  <view class="wrapDiv">
+    <view class="weekSwiperDown">
+      <view class="weekLeftorigin fl " bindtap="goPrev">
+        <image mode="widthFix" src="/images/week/zuojiantou@3x.png"/>
+        <text>上月</text>
+      </view>
+      <view class="weekSwiperCenter fl">
+        {{showYear}}年{{showMonth}}月
+      </view>
+      <view class="weekSwiperRight fl " bindtap="goNext">
+        <text>下月</text>
+        <image mode="widthFix" src="/images/week/youjiantou@3x.png"/>
+      </view>
+    </view>
+    <view>
+      <view class="table">
+        <view class="tr head">
+          <view class="th">日</view>
+          <view class="th">一</view>
+          <view class="th">二</view>
+          <view class="th">三</view>
+          <view class="th">四</view>
+          <view class="th">五</view>
+          <view class="th">六</view>
+        </view>
+
+        <block  wx:for="{{listData}}" wx:key="*this" wx:for-item="Hitem" wx:for-index="Hindex">
+
+          <view class="tr" style="height:{{height}}rpx;">
+
+            <block wx:for="{{Hitem}}" wx:for-index="Lindex" wx:key="*this" wx:for-item="Litem">
+              <view class="td">
+
+                <view wx:if="{{Litem[1] == 'dui'}}" class="yuanquan cclor iconfont icon-unif063 {{day == Litem[0] || chooseDate == Litem[0]?'Bjcolor ffcolor':''}}" bindtap="clickSetSign" data-id="{{Lindex}}" data-date="{{Litem[0]}}">{{Litem[0]}}</view>
+
+                <view wx:elif="{{Litem[1] == 'cuo'}}" class="yuanquan cclor iconfont icon-cuohao {{day == Litem[0] || chooseDate == Litem[0]?'Bjcolor ffcolor':''}}" bindtap="clickSetSign" data-id="{{Lindex}}" data-date="{{Litem[0]}}">{{Litem[0]}}</view>
+
+                <view wx:else class="yuanquan {{day == Litem[0]?'Bjcolor ffcolor':''}}" bindtap="clickSetSign" data-id="{{Lindex}}" data-date="{{Litem[0]}}">{{Litem[0]}}</view>
+
+              </view>
+            </block>
+
+          </view>
+
+        </block>
+
+      </view>
+    </view>
+    <!--<web-view src="http://caomei.i2plus1.com">点击进入</web-view>-->
+  </view>
+  <view class="eduCadownTxt">
+    <view class="dayJob">当日任务</view>
+    <view class="jobDownTxt" bindtap="goReadartcle"><text>培养专注力 拥抱成功</text>
+    <image class="jtRc fr" src="/images/person/12.png" mode="widthFix"/>
+    </view>
+  </view>

@@ -1,0 +1,166 @@
+<style lang="less" scope="scope">
+  .PerSoncon{background: #f7f7f7;padding: 80rpx 0rpx 0;}
+  .canvasDraw{position: relative;width: 100%;top: 20rpx;height: 480rpx;overflow: hidden;}
+  .canvasDraw canvas{position: absolute;top: 0;left: 0;}
+  #first{z-index: 10;}
+  #second{z-index: 1;}
+  .weekcount{text-align: center;width: 100%;margin-top: 160rpx;position: relative;}
+  .counttoptxt{font-size: 30rpx;color: #666666;}
+  .num{font-size: 110rpx;color: #ff8083;font-weight: bold;}
+  .num:after{  content: "分";  position: absolute;  bottom: 10px;  display: inline-block;  font-size: 13px;
+    color: #ff8083;
+  }
+  .fen{
+    position: absolute;
+    top:105rpx;
+    right: 210rpx;
+    color: #fd696e;
+  }
+  .sectionTxt{font-size: 33rpx;color: #666666;width: 90%;margin: 25rpx auto 40rpx;overflow: hidden;}
+  .coloTx{color: #ff8083;}
+  .personTitles{color: #666666;margin-top: 30rpx;font-size: 29rpx;line-height: 90rpx;}
+  .personquanb{width: 92%;background: #ffffff;display: flex;padding: 3% 4%;border-radius: 40rpx;color: #666666;}
+  .neibua{width: 50%;text-align: center;box-sizing: border-box;font-size: 28rpx;}
+  .ao{border-left: 1px solid #eaeaea; }
+  .pernum{color: #ff686b;margin-top: 20rpx;font-size: 30rpx;}
+  .wuwrap{width: 100%;}
+  .wuwrap image{width: 100%;}
+</style>
+<template>
+  <view class="container {{show?'hide':'show'}}">
+    <!-- canvas.wxml -->
+    <view class="canvasDraw" >
+      <canvas id="first" style="width:100%;height:400px;" canvas-id="firstCanvas"></canvas>
+      <view class="weekcount">
+        <view class="counttoptxt">已获得总学分</view>
+        <view><text class="num">{{score}}</text></view>
+      </view>
+    </view>
+    <view class="sectionTxt">
+      <view class="fl"><text>班级名次：</text><text class="coloTx">80</text></view>
+      <view class="fr"><text>全院名次：</text><text class="coloTx">80</text></view>
+    </view>
+    <view class="personWeeklist" @tap="goweekmark">
+      <view class="personTitles">第三周（2017.9.25-2017.10.2）</view>
+      <view class="personquanb">
+        <view class="neibua">
+          <view>综合分</view>
+          <view class="pernum">50</view>
+        </view>
+        <view class="neibua ao">
+          <view>班级名次</view>
+          <view class="pernum">1</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--<web-view src="http://test.caomei.i2plus1.com"></web-view>-->
+</template>
+
+<script>
+
+  import wepy from 'wepy'
+  import Toast from 'wepy-com-toast'
+  import appcommitbtn from '../components/appcommitbtn'
+  import testMixin from '../mixins/test'
+
+  export default class weekfraction extends wepy.page {
+
+    config = {
+      navigationBarTitleText: '学分查询'
+    }
+
+    components = {
+      appcommitbtn:appcommitbtn
+    }
+
+    mixins = [testMixin]
+
+    data = {
+      windowWidth:0,
+      count:null,
+//      radius:2*remSize*4, //圆环半径
+      lineWidth:12, //环的宽度
+      strokeStyle:'#ffffff', //边的颜色
+      lineCap:'round', //环形状
+      startAngle:Math.PI*0.8, //弧起角度
+      percent:90*0.7081,  //弧占比例
+      itemWidth:'100%',
+      color: "red",
+      score: 80,
+      show:false      //true为显示无学分
+    }
+
+    methods = {
+      counterEmit (...args) {
+        wx.navigateTo({
+          url: '/pages/weekexamresult'
+        })
+      },
+      goweekmark(){
+
+      }
+    }
+    onShareAppMessage(options) {
+      console.log(options.webViewUrl)
+    }
+    onLoad(option){
+      let self = this;
+
+      self.count = option.count || 0;
+      self.score = parseInt(option.count*100) || 1180
+
+      wx.getSystemInfo({
+        success: function(res) {
+          self.windowWidth = res.windowWidth*0.85
+        }
+      })
+      let ctx = wx.createCanvasContext('firstCanvas');
+      let remSize = 40*(self.windowWidth/320);
+
+      //console.log( 2*remSize )
+      ctx.beginPath();
+      ctx.arc((self.windowWidth)/2, 3.2*remSize, remSize*2.75, Math.PI*0.8, Math.PI*2.2, false);  // 坐标为250的圆，这里起始角度是0，结束角度是Math.PI*2
+      ctx.setLineWidth(self.lineWidth);
+      ctx.setStrokeStyle(self.strokeStyle);
+      ctx.setLineCap(self.lineCap);
+      ctx.stroke();  // 这里用stroke画一个空心圆
+
+      //  let tx = wx.createCanvasContext('firstCanvas')
+      ctx.moveTo(0,100)
+      let count = 1, times = 10;  // 分十次绘制蓝弧
+      let startAngle = self.startAngle;
+      let endAngle = startAngle;
+
+      let grad = ctx.createLinearGradient(2*remSize, 2*remSize, 6*remSize, 4*remSize);
+      grad.addColorStop(0, '#ff7b79');
+      grad.addColorStop(0.5, '#ffac93');
+      grad.addColorStop(1, '#ffd3a6');
+
+      /* 指定几个颜色 */
+//      let handle = setInterval(function() {
+//        if (count == times) {
+//          clearInterval(handle);
+//        } // angle
+      ctx.beginPath();
+      let anglePerSec = 2 * Math.PI * (self.percent / 100) / times; // 每个间隔滑动的弧度
+      ctx.arc((self.windowWidth)/2, 3.2*remSize, remSize*2.75, Math.PI*0.8, Math.PI*(self.count*1.4+0.8) , false); //这里的圆心坐标要和cirle的保持一致
+      ctx.setStrokeStyle(grad);
+      ctx.setLineWidth(self.lineWidth);
+      ctx.setLineCap(self.lineCap);
+      ctx.stroke();
+      ctx.closePath();
+
+      //  console.log(startAngle,endAngle,anglePerSec,count)
+      // startAngle += anglePerSec - 0.0028; // 消除每次绘环间的计算误差，防止出现空隙
+      // endAngle = startAngle + anglePerSec;
+      count++;
+      // self.$apply();
+
+      // }, 80);
+
+      ctx.draw()
+    }
+
+  }
+</script>

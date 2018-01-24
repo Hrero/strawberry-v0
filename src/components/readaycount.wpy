@@ -1,0 +1,49 @@
+<style lang="less" scope="scope">
+  .personinfo{width: 80%;text-align: center;overflow: hidden;background: #fff;padding: 0 10%;}
+  .perNum{color: #ff686b;line-height: 90rpx;}
+  .perBook{font-size: 20rpx;margin-bottom: 30rpx;}
+  .perInfo{width: 50%;}
+  .peryou{position: relative;}
+  .perline{height: 90rpx;border-right:1rpx solid #d4d4d4; position: absolute;left: 0;  top:33rpx;}
+</style>
+<template>
+  <view>
+    <view class="personinfo">
+      <view class="fl perInfo">
+        <view class="perNum">10</view>
+        <view class="perBook">Books(已读书籍)</view>
+      </view>
+      <view class="fr perInfo peryou">
+        <view class="perline"></view>
+        <view class="perNum">10</view>
+        <view class="perBook">Books(已读书籍)</view>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  // import abc from 'abc'
+
+  export default class readaycount extends wepy.component {
+//    props = {
+//      num: {
+//        type: [Number, String],
+//        coerce: function (v) {
+//          return +v
+//        },
+//        default: 50
+//      }
+//    }
+
+    data = {
+      userInfo: {
+        nickName:'',
+        avatarUrl:''
+      }
+    }
+    onLoad(){
+
+    }
+  }
+</script>

@@ -1,0 +1,69 @@
+
+  <view class="PerSoncon">
+    
+  <view>
+    <view class="PersonUserhead">
+      <view class="userinfo">
+        <image class="userinfo-avatar" src="{{ $goinheader$userInfo.avatarUrl }}" background-size="cover"/>
+        <view class="userinfo-nickname">{{ $goinheader$userInfo.nickName }}</view>
+      </view>
+      <view class="persontext">已在草莓书院阅读 坚持提升自我</view>
+    </view>
+    
+  <view>
+    <view class="personinfo">
+      <view class="fl perInfo">
+        <view class="perNum">10</view>
+        <view class="perBook">Books(已读书籍)</view>
+      </view>
+      <view class="fr perInfo peryou">
+        <view class="perline"/>
+        <view class="perNum">10</view>
+        <view class="perBook">Books(已读书籍)</view>
+      </view>
+    </view>
+  </view>
+
+    <!--<view class="personinfo">-->
+      <!--<view class="fl perInfo">-->
+        <!--<view class="perNum">10</view>-->
+        <!--<view class="perBook">Books(已读书籍)</view>-->
+      <!--</view>-->
+      <!--<view class="fr perInfo">-->
+        <!--<view class="perNum">10</view>-->
+        <!--<view class="perBook">Books(已读书籍)</view>-->
+      <!--</view>-->
+    <!--</view>-->
+  </view>
+
+    <view class="perTiao">
+      <view class="perTitiao">今日头条</view>
+      <view class="perDownBlock">
+        <view class="fl PersonBook perBzy">
+          <image class="personImg" mode="widthFix" src="/images/startschool/book.jpg"/>
+          <view class="personImgdis">你是人间四月天</view>
+        </view>
+        <view class="fr perBzy">
+          <view class="Bookover">
+            <view class="fl bookCount">NO1.</view>
+            <view class="fr bookDiscrp">你是人间四月天你是人间四月天你是人间四月天你是人间四月天</view>
+          </view>
+        </view>
+        <view class="fr perBzy">
+          <view class="Bookover">
+            <view class="fl bookCount">NO1.</view>
+            <view class="fr bookDiscrp">你是人间四月天你是人间四月天你是人间四月天你是人间四月天</view>
+          </view>
+        </view>
+        <view class="fr perBzy">
+          <view class="Bookover">
+            <view class="fl bookCount">NO1.</view>
+            <view class="fr bookDiscrp">你是人间四月天你是人间四月天你是人间四月天你是人间四月天</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="personTiao">
+      <view class="ReadBookBtn">我也要读书</view>
+    </view>
+  </view>

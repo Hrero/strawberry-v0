@@ -1,0 +1,48 @@
+
+  <view class="PerSoncon">
+    <view class="swiper">
+      <view class="weekexamTOF">
+        <image mode="widthFix" src="/images/week/true@3x.png"/>
+        <!--<image mode="widthFix" src="/images/week/false@3x.png"></image>-->
+      </view>
+      <view class="examSwiperTitle">1.以下关于绩效的说法正确得是？</view>
+
+      <view class="examSwiperTest">
+        <view class="weekSwiperAnswer">
+          <text class="weekSwiperNum">A</text><text class="weekSwiperTxt">放开胸怀想笑就笑</text>
+        </view>
+        <view class="weekSwiperAnswer">
+          <text class="weekSwiperNum">A</text><text class="weekSwiperTxt">放开胸怀想笑就笑</text>
+        </view>
+        <view class="weekSwiperAnswer">
+          <text class="weekSwiperNum">A</text><text class="weekSwiperTxt">放开胸怀想笑就笑</text>
+        </view>
+        <view class="weekSwiperAnswer">
+          <text class="weekSwiperNum">A</text><text class="weekSwiperTxt">放开胸怀想笑就笑</text>
+        </view>
+      </view>
+      <view class="examresultAnswer">
+        <view class="examArcTrue">
+          <view class="examPointBlue examPoint"/>
+          <text>正确答案：</text><text>A</text>
+        </view>
+        <view class="examArcYour">
+          <view class="examPointred examPoint"/>
+          <text>您的答案：</text><text>A</text>
+        </view>
+      </view>
+    </view>
+    <view class="weekSwiperDown">
+      <view class="weekLeftorigin fl">
+        <image mode="widthFix" src="/images/week/zuojiantou@3x.png"/>
+        <text>上一题</text>
+      </view>
+      <view class="weekSwiperCenter fl">
+        当前题目10/1
+      </view>
+      <view class="weekSwiperRight fl weekTxtColor">
+        <text>下一题</text>
+        <image mode="widthFix" src="/images/week/youjiantou@3x.png"/>
+      </view>
+    </view>
+  </view>

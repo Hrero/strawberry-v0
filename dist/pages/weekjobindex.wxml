@@ -1,0 +1,44 @@
+
+  <view class="container">
+    <view class="weekTop">
+      <view class="fl weekTopLeft">
+        <image mode="widthFix" src="/images/startschool/book.jpg"/>
+      </view>
+      <view class=" weekTopRight">
+        <view class="weekMarBottom">
+          <view class="fl">书名：</view>
+          <view class="weekTxtR">你是人间四月天你是人间四月天你是人人间四月天</view>
+        </view>
+        <view class="weekMarBottom">
+          <view class="fl">作者：</view>
+          <view class="weekTxtR">四月天</view>
+        </view>
+        <view>
+          <view class="fl">推荐：</view>
+          <image class="weekStar" mode="widthFix" src="/images/week/star-1@3x.png"/>
+          <image class="weekStar" mode="widthFix" src="/images/week/star-1@3x.png"/>
+          <image class="weekStar" mode="widthFix" src="/images/week/star-1@3x.png"/>
+          <image class="weekStar" mode="widthFix" src="/images/week/star-1@3x.png"/>
+          <image class="weekStar" mode="widthFix" src="/images/week/star-no@2x.png"/>
+        </view>
+      </view>
+    </view>
+    <view class="weektopJob">
+      <view class="fl weekLeftName">
+        <view class="weekFirstPoint"/>
+      </view>
+      <view class="fl jobBlock">任务列表</view>
+    </view>
+    <block  wx:for="{{weekList}}" index="idx" item="item">
+      <view class="weekList">
+        <view class="fl weekDay">{{item.weekDay}}
+        <view class="weekListPoint {{item.pointBackground}}"/>
+        </view>
+        <view class="fr weekTxt" bindtap="goPunchClock" data-wpygopunchclock-a="{{item.readState}}">
+          <view class="fl {{item.weektxtdis}}">{{item.bookCatalog}}</view>
+          <view class="fr {{item.weektxtColor}}">{{item.readStateH}}<image class="{{item.suoShow?'show':'hide'}} weekSuo weekMarLeft" src="/images/week/suo@3x.png" mode="widthFix"/></view>
+          <view class="weekListle"/>
+        </view>
+      </view>
+    </block>
+  </view>

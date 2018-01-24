@@ -1,0 +1,60 @@
+<style lang="less" scope="scope">
+  .shareDown{width: 80%;padding: 0 10%;}
+  .TermImg{width: 480rpx;margin: 60rpx auto 40rpx;}
+  .TermImg image{width: 100%;}
+  .TremTitle{font-size: 27rpx;color: #666666;}
+  .TremUser{font-size: 30rpx;color: #333333;margin: 35rpx 0 40rpx 0;}
+  .TermContent{font-size: 26rpx;color: #999999;}
+  .BeginClass{margin: 50rpx auto 50rpx; background: #ff6f72;width: 100%;height: 80rpx;color: #fff;text-align: center;line-height: 80rpx;border-radius: 40rpx;}
+</style>
+<template>
+  <!--<view class="container">-->
+    <infoHeader title="sharetermbegins"></infoHeader>
+    <view class="TermImg"><image mode="widthFix" src="/images/startschool/kaixuela@3X.png"></image></view>
+    <view class="shareDown">
+      <view class="TremTitle">下面，是草莓书院院长送给各位学员的一封信</view>
+      <view class="TremUser">各位学员：</view>
+      <view class="TermContent">你们好，你们好，我是阿时间的哈结束多哈谁都看哈收到啦考试的撒你们好，我是阿时间的哈结束多哈谁都看哈收到啦考试的撒你们好，我是阿时间的哈结束多哈谁都看哈收到啦考试的撒我是阿时间的哈结束多哈谁都看哈收到啦考试的撒肯定会拉上客户端可还是看好了卡上的哈收到款开始打圣诞贺卡萨哈瞌睡的可卡上的</view>
+      <button class="BeginClass" @tap="goClass">进入课程</button>
+    </view>
+
+  <!--</view>-->
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import InfoHeader from '../components/shareinfoheader'
+  import Toast from 'wepy-com-toast'
+  import testMixin from '../mixins/test'
+
+  export default class TermBegins extends wepy.page {
+
+    config = {
+      navigationBarTitleText: '开学页'
+    }
+
+    components = {
+      infoHeader: InfoHeader
+    }
+
+    mixins = [testMixin]
+
+    data = {
+      userInfo: {
+        nickName:'',
+        avatarUrl:''
+      }
+    }
+
+    methods = {
+      goClass(){
+        wx.reLaunch({
+          url: '/pages/weekjobindex'
+        })
+      }
+    }
+    onLoad(){
+
+    }
+  }
+</script>

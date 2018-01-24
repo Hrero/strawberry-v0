@@ -1,0 +1,1 @@
+.personinfo{width:80%;text-align:center;overflow:hidden;background:#fff;padding:0 10%}.perNum{color:#ff686b;line-height:90rpx}.perBook{font-size:20rpx;margin-bottom:30rpx}.perInfo{width:50%}.peryou{position:relative}.perline{height:90rpx;border-right:1rpx solid #d4d4d4;position:absolute;left:0;top:33rpx}

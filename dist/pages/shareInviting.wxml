@@ -1,0 +1,17 @@
+
+  <view class="container">
+    <view class="ShareInving">
+      <view class="InviTitle fl">邀请奖励:</view>
+      <view class="InviContent fr">每成功邀请一位好友，奖励10元 现金红包</view>
+    </view>
+    <view class="ShareInving">
+      <view class="InviTitle fl">邀请资格:</view>
+      <view class="InviContent fr">草莓书院学员</view>
+    </view>
+    <view class="ShareInving">
+      <view class="InviTitle fl">邀请流程:</view>
+      <view class="InviContent fr">您的好友报名成功后，请将好友分班成功页面全屏截图以及好友联系方式（需要与好友报名时填写的联系方式一致）截图发给草莓书院客服微信（微信号：caomei01）,工作人员审核后将红包发送至您的微信</view>
+    </view>
+    <view class="invitinFriend">立即邀请</view>
+    <view class="inviColer">注意：好友信息不可重复使用，请在好友报名成功后第一时间领 取，最终解释权归草莓书院所有</view>
+  </view>

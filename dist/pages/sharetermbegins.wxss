@@ -1,0 +1,2 @@
+@import "./../components/shareinfoheader.wxss";
+.shareDown{width:80%;padding:0 10%}.TermImg{width:480rpx;margin:60rpx auto 40rpx}.TermImg image{width:100%}.TremTitle{font-size:27rpx;color:#666666}.TremUser{font-size:30rpx;color:#333333;margin:35rpx 0 40rpx 0}.TermContent{font-size:26rpx;color:#999999}.BeginClass{margin:50rpx auto 50rpx;background:#ff6f72;width:100%;height:80rpx;color:#fff;text-align:center;line-height:80rpx;border-radius:40rpx}

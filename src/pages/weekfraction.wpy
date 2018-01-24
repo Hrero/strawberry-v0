@@ -1,0 +1,131 @@
+<style lang="less" scope="scope">
+  .PerSoncon{background: #f7f7f7;padding: 80rpx 0rpx 0;}
+  .canvasDraw{position: relative;width: 100%;top: 20rpx;height: 700rpx;overflow: hidden;}
+  .canvasDraw canvas{position: absolute;top: 0;left: 0;}
+  #first{z-index: 10;}
+  #second{z-index: 1;}
+  .weekcount{text-align: center;width: 100%;margin-top: 160rpx;position: relative;}
+  .counttoptxt{font-size: 30rpx;color: #666666;}
+  .num{font-size: 110rpx;color: #ff8083;font-weight: bold;}
+  .fen{
+    position: absolute;
+    top:105rpx;
+    right: 210rpx;
+    color: #fd696e;
+  }
+</style>
+<template>
+  <view class="container">
+    <!-- canvas.wxml -->
+    <view class="canvasDraw" >
+      <canvas id="first" style="width:100%;height:400px;" canvas-id="firstCanvas"></canvas>
+      <view class="weekcount">
+        <view class="counttoptxt">本次考试</view>
+        <view><text class="num">{{score}}</text></view>
+        <text class="fen">分</text>
+      </view>
+    </view>
+    <appcommitbtn Text="查看答案" @goReadSuccess.user="counterEmit"></appcommitbtn>
+  </view>
+</template>
+
+<script>
+
+  import wepy from 'wepy'
+  import Toast from 'wepy-com-toast'
+  import appcommitbtn from '../components/appcommitbtn'
+  import testMixin from '../mixins/test'
+
+  export default class weekfraction extends wepy.page {
+
+    config = {
+      navigationBarTitleText: '考试结果页'
+    }
+
+    components = {
+      appcommitbtn:appcommitbtn
+    }
+
+    mixins = [testMixin]
+
+    data = {
+      windowWidth:0,
+      count:null,
+//      radius:2*remSize*4, //圆环半径
+      lineWidth:12, //环的宽度
+      strokeStyle:'#ffffff', //边的颜色
+      lineCap:'round', //环形状
+      startAngle:Math.PI*0.8, //弧起角度
+      percent:90*0.7081,  //弧占比例
+      itemWidth:'100%',
+      color: "red",
+      score: null
+    }
+
+    methods = {
+      counterEmit (...args) {
+        wx.navigateTo({
+          url: '/pages/weekexamresult'
+        })
+      }
+    }
+
+    onLoad(option){
+      let self = this;
+
+      self.count = option.count || 0;
+      self.score = parseInt(option.count*100)
+      wx.getSystemInfo({
+        success: function(res) {
+          self.windowWidth = res.windowWidth*0.85
+        }
+      })
+      let ctx = wx.createCanvasContext('firstCanvas');
+      let remSize = 40*(self.windowWidth/320);
+
+      //console.log( 2*remSize )
+      ctx.beginPath();
+      ctx.arc((self.windowWidth)/2, 3.2*remSize, remSize*3, Math.PI*0.8, Math.PI*2.2, false);  // 坐标为250的圆，这里起始角度是0，结束角度是Math.PI*2
+      ctx.setLineWidth(self.lineWidth);
+      ctx.setStrokeStyle(self.strokeStyle);
+      ctx.setLineCap(self.lineCap);
+      ctx.stroke();  // 这里用stroke画一个空心圆
+
+    //  let tx = wx.createCanvasContext('firstCanvas')
+      ctx.moveTo(0,100)
+      let count = 1, times = 10;  // 分十次绘制蓝弧
+      let startAngle = self.startAngle;
+      let endAngle = startAngle;
+
+      let grad = ctx.createLinearGradient(2*remSize, 2*remSize, 6*remSize, 4*remSize);
+      grad.addColorStop(0, '#ff7b79');
+      grad.addColorStop(0.5, '#ffac93');
+      grad.addColorStop(1, '#ffd3a6');
+
+      /* 指定几个颜色 */
+//      let handle = setInterval(function() {
+//        if (count == times) {
+//          clearInterval(handle);
+//        } // angle
+        ctx.beginPath();
+        let anglePerSec = 2 * Math.PI * (self.percent / 100) / times; // 每个间隔滑动的弧度
+        ctx.arc((self.windowWidth)/2, 3.2*remSize, remSize*3, Math.PI*0.8, Math.PI*(self.count*1.4+0.8) , false); //这里的圆心坐标要和cirle的保持一致
+        ctx.setStrokeStyle(grad);
+        ctx.setLineWidth(self.lineWidth);
+        ctx.setLineCap(self.lineCap);
+        ctx.stroke();
+        ctx.closePath();
+
+      //  console.log(startAngle,endAngle,anglePerSec,count)
+       // startAngle += anglePerSec - 0.0028; // 消除每次绘环间的计算误差，防止出现空隙
+       // endAngle = startAngle + anglePerSec;
+        count++;
+       // self.$apply();
+
+     // }, 80);
+
+      ctx.draw()
+    }
+
+  }
+</script>

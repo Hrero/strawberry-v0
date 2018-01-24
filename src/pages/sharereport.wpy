@@ -1,0 +1,150 @@
+<style lang="less" scope="scope">
+.payReportDis{font-size: 22rpx;color: #333333;text-align: center;margin-top: 30rpx;}
+.payReImg{width: 35rpx;vertical-align: middle;}
+  .payContentList{width: 80%;margin: 30rpx auto 0;display:flex;align-items: center;}
+  .inputAuto{display: inline-block;width: 540rpx;font-size: 22rpx;border-bottom: 1px solid #d3d3d3;text-align: center;}
+.payConWrap{margin-top: 35rpx;}
+.PayCode{z-index: 1000; background: #ff686b;color: #fff;border-radius: 10rpx;font-size: 22rpx;position: absolute;right: 30rpx;top: -12rpx;}
+.Payposition{position: relative}
+  .FinishBtn{width: 630rpx;height: 80rpx;margin: 40rpx auto 0;text-align: center;line-height: 80rpx;font-size: 30rpx;border-radius: 40rpx;color: #fff;}
+button {
+  padding-left:8rpx;
+  padding-right:8rpx;
+}
+
+</style>
+<template>
+  <infoHeader title="sharereport"></infoHeader>
+  <view class="payReportDis">请您认真地填写以下信息，我们会为您制定合适的课程。</view>
+  <view class="payConWrap">
+    <view class="payContentList">
+      <image class="payReImg" mode="widthFix" src="/images/startschool/xingming@3x.png"></image>
+      <input class="inputAuto" placeholder="请输入名字" auto-focus/>
+    </view>
+    <view class="payContentList">
+      <image class="payReImg" mode="widthFix" src="/images/startschool/xingbie@3x.png"></image>
+
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="picker">
+          <!--当前选：{{array[index]}}-->
+          <input class="inputAuto" placeholder="请选择性别" auto-focus value="{{array[index]}}"/>
+        </view>
+      </picker>
+    </view>
+    <view class="payContentList">
+      <image class="payReImg" mode="widthFix" src="/images/startschool/shouji@3x.png"></image>
+      <input class="inputAuto" placeholder="请输入手机号" auto-focus/>
+    </view>
+    <view class="payContentList Payposition">
+      <image class="payReImg" mode="widthFix" src="/images/startschool/yanzhengma@3x.png"></image>
+      <input class="inputAuto" placeholder="请输入验证码" auto-focus/>
+      <view class="" ></view>
+      <button disabled='{{disabled}}' class="PayCode" data-id="2" bindtap="getVerificationCode">
+        {{time}}
+      </button>
+    </view>
+    <view class="payContentList">
+      <image class="payReImg" mode="widthFix" src="/images/startschool/dizhi@3x.png"></image>
+      <input class="inputAuto" placeholder="请输入所在地" auto-focus/>
+    </view>
+    <view class="payContentList">
+      <image class="payReImg" mode="widthFix" src="/images/startschool/nianlingduan@3x.png"></image>
+      <input class="inputAuto" placeholder="请选择年龄段" auto-focus/>
+    </view>
+    <view class="payContentList">
+      <image class="payReImg" mode="widthFix" src="/images/startschool/zhiwei@3x.png"></image>
+      <input class="inputAuto" placeholder="学士/职场人员" auto-focus/>
+    </view>
+    <view class="payContentList">
+      <image class="payReImg" mode="widthFix" src="/images/startschool/xueli@3x.png"></image>
+      <input class="inputAuto" placeholder="请选择学历" auto-focus/>
+    </view>
+  </view>
+  <button class="FinishBtn" disabled="{{disabledBtn}}"
+          style="background-color:{{ disabledBtn?'#cccccc':'#fd696e' }};color: {{ disabledBtn?'#ffffff':'#ffffff' }};"
+          @tap="commitSucc">完成报道</button>
+</template>
+
+<script>
+
+  import wepy from 'wepy'
+  import InfoHeader from '../components/shareinfoheader'
+  import Toast from 'wepy-com-toast'
+  import testMixin from '../mixins/test'
+
+  export default class PayReport extends wepy.page {
+
+    config = {
+      navigationBarTitleText: '报到页'
+    }
+
+    components = {
+      infoHeader: InfoHeader
+    }
+
+    mixins = [testMixin]
+
+    data = {
+      userInfo: {
+        nickName:'',
+        avatarUrl:''
+      },
+      array:['男', '女'],
+      date:'请选择日期',
+      fun_id:2,
+      time: '获取验证码', //倒计时
+      currentTime:61,
+      interval:null,
+      disabled: false,
+      disabledBtn: false
+    }
+
+    methods = {
+      bindPickerChange(e) {
+        this.index  = e.detail.value
+      },
+      getVerificationCode(){
+        var that = this;
+        var currentTime = that.currentTime
+        that.interval = setInterval(function () {
+          currentTime--;
+          that.setData({
+            time: currentTime+'秒'
+          })
+          if (currentTime <= 0) {
+            clearInterval(that.interval)
+            that.setData({
+              time: '重新发送',
+              currentTime:61,
+              disabled: false
+            })
+          }
+        }, 1000)
+        that.setData({
+          disabled:true
+        })
+      },
+      commitSucc(){
+        wx.navigateTo({
+          url: '/pages/sharenondivision'
+        })
+      }
+    }
+    onLoad(){
+
+      let self = this
+
+      wx.getUserInfo({
+        success: function(res) {
+          let userInfo = res.userInfo
+          let nickName = userInfo.nickName
+          let avatarUrl = userInfo.avatarUrl
+
+          self.userInfo.nickName = nickName;
+          self.userInfo.avatarUrl = avatarUrl;
+          self.$apply()
+        }
+      })
+    }
+  }
+</script>

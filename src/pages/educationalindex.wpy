@@ -1,0 +1,270 @@
+<style lang="less" scope="scope">
+  .weekSwiperDown image{width: 28rpx;}
+  .weekSwiperDown{font-size: 30rpx;color: #cccccc;width: 92%;margin: 30rpx auto 0;overflow: hidden;}
+  .weekLeftorigin{width: 20%;}
+  .weekSwiperCenter{width: 60%;text-align: center;color: #666666;}
+  .weekSwiperRight{width: 20%;text-align: right;}
+  .wrapDiv{width: 92%;padding: 30rpx 4%; background: #fff;}
+  .weekLeftorigin text{margin-left: 8rpx;}
+  .weekSwiperRight text{margin-right: 8rpx;}
+  .table .head .th{color:#666666;}
+  .table {  border: 0px solid darkgray; margin-top: 30rpx; font-size: 30rpx;}
+  .tr {  display: flex;  width: 100%;  justify-content: center;  height: 80rpx;  align-items: center;  }
+  .td { position: relative; width:40%; display: flex; height:100%; align-items: center;border-radius: 50%; justify-content: center;  text-align: center;  }
+  .th {  width: 40%;  justify-content: center;  color: #cccccc;  display: flex;  height: 80rpx;  align-items: center;  }
+  .eduCadownTxt{width: 84%;padding: 0 8%; background:#fff;color: #666666;line-height: 100rpx;margin-top: 40rpx;}
+  .dayJob{font-size: 32rpx;}
+  .jobDownTxt{font-size: 26rpx;}
+  .jobDownTxt:before{  content: '•'; /*display: inline-block;*/  width: 25rpx;  height: 100%;  line-height: 70rpx;  margin-right: 18rpx; /*font-size: 40rpx;*/  }
+  .jtRc{width: 20rpx;order: 1;margin-top: 35rpx;}
+  .Bjcolor{background: #ff8083;color: #ffffff;}
+  .table .td .ffcolor{color: #ffffff;}
+  .td .cclor{color: #666666;}
+  .duicuo{position: absolute;width: 25rpx;right: 5rpx;bottom: 10rpx;}
+  .yuanquan{width: 46rpx;height: 46rpx;color: #b2b2b2;border-radius: 50%;text-align:center;line-height: 46rpx;font-size: 26rpx;position: relative;}
+  .iconfont {  font-family:"iconfont" !important;  font-size:30rpx;  font-style:normal;  -webkit-font-smoothing: antialiased;  -moz-osx-font-smoothing: grayscale;  }
+  .icon-unif063:after { content: "\e64d"; display: inline-block;  font-size: 30rpx;  position: absolute;  bottom: -10rpx; right: -30rpx;  color: #8cbcf1; }
+  .icon-cuohao:after { content: "\e6ef"; display: inline-block;  font-size: 25rpx;  position: absolute;  bottom: -10rpx; right: -20rpx;  color: #ff8a8d; }
+</style>
+<template>
+  <view class="wrapDiv">
+    <view class="weekSwiperDown">
+      <view class="weekLeftorigin fl " @tap="goPrev">
+        <image mode="widthFix" src="/images/week/zuojiantou@3x.png"></image>
+        <text >上月</text>
+      </view>
+      <view class="weekSwiperCenter fl">
+        {{showYear}}年{{showMonth}}月
+      </view>
+      <view class="weekSwiperRight fl " @tap="goNext">
+        <text >下月</text>
+        <image mode="widthFix" src="/images/week/youjiantou@3x.png"></image>
+      </view>
+    </view>
+    <view>
+      <view class="table">
+        <view class="tr head">
+          <view class="th">日</view>
+          <view class="th">一</view>
+          <view class="th">二</view>
+          <view class="th">三</view>
+          <view class="th">四</view>
+          <view class="th">五</view>
+          <view class="th">六</view>
+        </view>
+
+        <block wx:for="{{listData}}" wx:key="*this" wx:for-item="Hitem" wx:for-index="Hindex">
+
+          <view class="tr" style="height:{{height}}rpx;">
+
+            <repeat wx:for="{{Hitem}}" wx:for-index="Lindex" wx:key="*this" wx:for-item="Litem">
+              <view class="td" >
+
+                <view wx:if="{{Litem[1] == 'dui'}}" class="yuanquan cclor iconfont icon-unif063 {{day == Litem[0] || chooseDate == Litem[0]?'Bjcolor ffcolor':''}}"
+                      @tap="clickSetSign"  data-id="{{Lindex}}" data-date="{{Litem[0]}}">{{Litem[0]}}</view>
+
+                <view wx:elif="{{Litem[1] == 'cuo'}}" class="yuanquan cclor iconfont icon-cuohao {{day == Litem[0] || chooseDate == Litem[0]?'Bjcolor ffcolor':''}}"
+                      @tap="clickSetSign"  data-id="{{Lindex}}" data-date="{{Litem[0]}}">{{Litem[0]}}</view>
+
+                <view wx:else class="yuanquan {{day == Litem[0]?'Bjcolor ffcolor':''}}"
+                      @tap="clickSetSign"  data-id="{{Lindex}}" data-date="{{Litem[0]}}">{{Litem[0]}}</view>
+
+              </view>
+            </repeat>
+
+          </view>
+
+        </block>
+
+      </view>
+    </view>
+    <!--<web-view src="http://caomei.i2plus1.com">点击进入</web-view>-->
+  </view>
+  <view class="eduCadownTxt">
+    <view class="dayJob">当日任务</view>
+    <view class="jobDownTxt" @tap="goReadartcle"><text>培养专注力 拥抱成功</text>
+    <image class="jtRc fr" src="/images/person/12.png" mode="widthFix"></image>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Toast from 'wepy-com-toast'
+  import testMixin from '../mixins/test'
+
+  export default class educationalindex extends wepy.page {
+
+    config = {
+      navigationBarTitleText: '教务'
+    }
+
+    mixins = [testMixin]
+
+    data = {
+      userInfo: {
+        nickName:'',
+        avatarUrl:''
+      },
+      listData:[],
+      showYear:null,
+      showMonth:null,
+      oneDay:null,
+      lastDay:null,
+      height:80,
+      status:{
+        "sign":[
+          {"signDay":"09"},
+          {"signDay":"11"},
+          {"signDay":"12"},
+          {"signDay":"13"}
+        ],
+        "unsign":[
+          {"signDay":"19"},
+          {"signDay":"20"},
+          {"signDay":"21"},
+          {"signDay":"22"}
+        ],
+        "bookInfo": "fasd"
+      },
+      signdc:null,
+      day:null,
+      chooseDate:null
+    }
+
+    methods = {
+      goNext(){
+        this.showMonth++;
+        this.chooseDate = null;  //清空点击状态
+
+        if( this.showMonth > 12 ){
+          this.showMonth = 1;
+          this.showYear++;
+        }
+        this.getDate();
+
+      },
+      goPrev(){
+        this.showMonth--;
+        this.chooseDate = null;
+
+        if( this.showMonth < 1 ){
+          this.showMonth = 12;
+          this.showYear--;
+        }
+        this.getDate()
+      },
+      clickSetSign(e){
+console.log(e.currentTarget.dataset)
+        this.chooseDate = e.currentTarget.dataset.date
+      },
+      goReadartcle(){
+        //1已打卡2 未打卡 3 去打卡 5考试
+        wx.setStorage({key:"btnfromPage", data:"education"})
+        wx.navigateTo({
+          url: '/pages/weekreadingarticles?index='+1
+        })
+
+      }
+    }
+
+    computed = {
+
+    }
+
+    watch = {}
+
+    getDate(){
+      let Dnum = 1;
+      let DataArray = new Array();
+      this.oneDay = new Date(this.showYear,this.showMonth-1,1).getDay();
+      this.lastDay = new Date(this.showYear,this.showMonth,0).getDate();
+
+
+//      this.day = new Date().getDate();
+
+      //0 尾日期 1位状态 2 点击状态
+      //创建一个二维数组
+      for( let i=0;i<6;i++ ){
+        let Harr = new Array();
+
+        for( let j=0;j<7;j++ ){
+          let Barr = new Array()
+          Harr.push(Barr)
+        }
+        DataArray.push(Harr)
+      }
+      //遍历第一行
+      for( let i=0;i<7;i++ ){
+          if( i < this.oneDay ){
+            DataArray[0][i][0] = ''
+          }else{
+            DataArray[0][i][0] = Dnum;
+            //判断签到状态
+            for( let k=0;k<this.status.sign.length;k++ ){
+              if( this.status.sign[k].signDay == Dnum ){
+                DataArray[0][i][1] = 'dui'
+              }
+            }
+            for( let k=0;k<this.status.unsign.length;k++ ){
+              if( this.status.unsign[k].signDay == Dnum ){
+                DataArray[0][i][1] = 'cuo'
+              }
+            }
+
+            Dnum++;
+
+          }
+      }
+      //遍历剩下的
+      for( let i=1;i<6;i++ ){
+
+        for( let j=0;j<7;j++ ){
+
+          if( Dnum > this.lastDay ){
+            DataArray[i][j][0] = '';
+          }else{
+            DataArray[i][j][0] = Dnum;
+            //判断签到状态
+            for( let k=0;k<this.status.sign.length;k++ ){
+              if( this.status.sign[k].signDay == Dnum ){
+                DataArray[i][j][1] = 'dui'
+              }
+            }
+            for( let k=0;k<this.status.unsign.length;k++ ){
+              if( this.status.unsign[k].signDay == Dnum ){
+                DataArray[i][j][1] = 'cuo'
+              }
+            }
+
+            Dnum++;
+          }
+
+          //处理结尾一行
+          if( DataArray[5][0][0] == ''){
+            DataArray.pop()
+            break;
+          }
+
+        }
+
+      }
+
+      this.listData = DataArray;
+      console.log(this.listData)
+    }
+
+    onLoad(){
+      //初始化日历
+      this.showYear = new Date().getFullYear();
+      this.showMonth = new Date().getMonth() + 1;
+      this.getDate()
+
+
+
+
+
+    }
+
+  }
+</script>

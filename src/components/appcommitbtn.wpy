@@ -1,0 +1,35 @@
+<style lang="less" scope="scope">
+.readArticleBtn{width: 100%;background: #fd696e;height: 80rpx;line-height: 80rpx;text-align: center;color: #fff;font-size: 28rpx;border-radius: 40rpx;margin: 0 auto;}
+</style>
+<template>
+<view>
+  <view class="readArticleBtn" @tap="go">{{Text}}</view>
+</view>
+</template>
+<script>
+  import wepy from 'wepy'
+
+  export default class commitBtn extends wepy.component {
+    props=['Text']
+    data = {
+      userInfo: {
+        nickName:'',
+        avatarUrl:''
+      },
+      Text:''
+    }
+    methods = {
+        go(){
+          this.$emit('goReadSuccess')
+        }
+    }
+    events = {
+      'Text': (...args) => {
+        this.Text = args[0]
+      }
+    }
+    onLoad(){
+console.log(this.btnText)
+    }
+  }
+</script>

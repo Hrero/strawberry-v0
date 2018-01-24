@@ -1,0 +1,39 @@
+
+  <!--<view class="container">-->
+    
+  <view class="shareWrapHead">
+    <view class="payUserInfo">
+      <view class="userinfo">
+        <image class="userinfo-avatar fl" src="{{ $infoHeader$userInfo.avatarUrl }}" background-size="cover"/>
+        <view class="userinfo-nickname fr">{{ $infoHeader$userInfo.nickName }}</view>
+      </view>
+    </view>
+    <view class="PayImgIcon">
+      <view class="PayimgView"><image class="{{ $infoHeader$title== 'sharepay' || 'sharereport' || 'sharenondivision' || 'sharetermbegins'?'widthImg':''}}" mode="widthFix" src="{{$infoHeader$payimg[0]}}"/></view>
+      <view class="payLine"/>
+      <view class="PayimgView"><image class="{{ $infoHeader$title == 'sharereport' || $infoHeader$title == 'sharenondivision' || $infoHeader$title == 'sharetermbegins' ?'widthImg' : '' }}" mode="widthFix" src="{{$infoHeader$payimg[1]}}"/></view>
+      <view class="payLine"/>
+      <view class="PayimgView"><image class="{{ $infoHeader$title == 'sharenondivision' || $infoHeader$title == 'sharetermbegins'?'widthImg' : '' }}" mode="widthFix" src="{{$infoHeader$payimg[2]}}"/></view>
+      <view class="payLine"/>
+      <view class="PayimgView"><image class="{{ $infoHeader$title == 'sharetermbegins'?'widthImg' : '' }}" mode="widthFix" src="{{$infoHeader$payimg[3]}}"/></view>
+    </view>
+    <view class="payTxtName">
+      <view>付费</view>
+      <view class="payTxtLine"/>
+      <view>报到</view>
+      <view class="payTxtLine"/>
+      <view>分班</view>
+      <view class="payTxtLine"/>
+      <view>开学</view>
+    </view>
+  </view>
+
+    <view class="TermImg"><image mode="widthFix" src="/images/startschool/kaixuela@3X.png"/></view>
+    <view class="shareDown">
+      <view class="TremTitle">下面，是草莓书院院长送给各位学员的一封信</view>
+      <view class="TremUser">各位学员：</view>
+      <view class="TermContent">你们好，你们好，我是阿时间的哈结束多哈谁都看哈收到啦考试的撒你们好，我是阿时间的哈结束多哈谁都看哈收到啦考试的撒你们好，我是阿时间的哈结束多哈谁都看哈收到啦考试的撒我是阿时间的哈结束多哈谁都看哈收到啦考试的撒肯定会拉上客户端可还是看好了卡上的哈收到款开始打圣诞贺卡萨哈瞌睡的可卡上的</view>
+      <button class="BeginClass" bindtap="goClass">进入课程</button>
+    </view>
+
+  <!--</view>-->

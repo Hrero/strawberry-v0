@@ -1,0 +1,29 @@
+
+  <view class="container {{show?'hide':'show'}}">
+    <!-- canvas.wxml -->
+    <view class="canvasDraw">
+      <canvas id="first" style="width:100%;height:400px;" canvas-id="firstCanvas"/>
+      <view class="weekcount">
+        <view class="counttoptxt">已获得总学分</view>
+        <view><text class="num">{{score}}</text></view>
+      </view>
+    </view>
+    <view class="sectionTxt">
+      <view class="fl"><text>班级名次：</text><text class="coloTx">80</text></view>
+      <view class="fr"><text>全院名次：</text><text class="coloTx">80</text></view>
+    </view>
+    <view class="personWeeklist" bindtap="goweekmark">
+      <view class="personTitles">第三周（2017.9.25-2017.10.2）</view>
+      <view class="personquanb">
+        <view class="neibua">
+          <view>综合分</view>
+          <view class="pernum">50</view>
+        </view>
+        <view class="neibua ao">
+          <view>班级名次</view>
+          <view class="pernum">1</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--<web-view src="http://test.caomei.i2plus1.com"></web-view>-->

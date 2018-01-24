@@ -1,0 +1,70 @@
+<style lang="less" scope="scope">
+  .DivisionBlock{font-size: 30rpx;text-align: center;}
+  .NonDivTitle{color: #999999;margin-top: 90rpx;margin-bottom: 120rpx;}
+  .ShareHeight{line-height: 54rpx;}
+  .Shareclo{color: #999999;line-height: 62rpx;}
+  .ShareGoTop{margin-top: 90rpx;}
+  .shareTop{margin-top: 60rpx;}
+  .DivisionImg{width: 100%;margin-top: 80rpx;}
+  .DivisionImg image{width: 100%;}
+</style>
+<template>
+  <view class="">
+    <infoHeader title="sharenondivision"></infoHeader>
+    <view class="DivisionBlock">
+
+      <view wx:if="{{isShow}}">
+        <view class="NonDivTitle">恭喜您报到成功，成为草莓书院第五期学员</view>
+        <view class="ShareHeight">分班时间：2017.11.20</view>
+        <view class="ShareHeight">开学时间：2017.11.27</view>
+      </view>
+
+      <view wx:else class="ShareGoTop">
+        <view class="ShareHeight Shareclo">恭喜您分班成功</view>
+        <view class="ShareHeight Shareclo">您所在的班级为「西柚班」</view>
+        <view class="ShareHeight shareTop">开学时间：2017.11.27</view>
+      </view>
+
+    </view>
+  </view>
+  <view class="DivisionImg"><image  mode="widthFix" src="/images/startschool/hongbao@3x.png"></image></view>
+
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import InfoHeader from '../components/shareinfoheader'
+  import Toast from 'wepy-com-toast'
+  import testMixin from '../mixins/test'
+
+  export default class TermBegins extends wepy.page {
+
+    config = {
+      navigationBarTitleText: '开学页'
+    }
+
+    components = {
+      infoHeader: InfoHeader
+    }
+
+    mixins = [testMixin]
+
+    data = {
+      userInfo: {
+        nickName:'',
+        avatarUrl:''
+      },
+      isShow: true
+    }
+
+    methods = {
+      JumpReport(){
+
+
+      }
+    }
+    onLoad(){
+
+    }
+  }
+</script>

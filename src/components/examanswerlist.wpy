@@ -1,0 +1,34 @@
+<style type="less">
+  .groupitem {
+  }
+</style>
+<template>
+  <view class="weekSwiperAnswer" @tap="chooseThis" data-id="1">
+    <image mode="widthFix" src="{{src}}"></image>
+    <text class="weekSwiperNum">{{English.nomal[index]}}</text><text class="weekSwiperTxt">{{answerList}}</text>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+
+  export default class examanswerlist extends wepy.component {
+    props = {
+      answerList:[],
+      English:[]
+    }
+    data = {
+        src:'/images/week/nochoose@3x.png',
+        answerList:[],
+        index:'',
+        English:[]
+    }
+    methods = {
+      chooseThis (e) {
+          console.log(e)
+        //this.src = '/images/week/choose@3x.png'
+        //this.gitem.childname = `Child Random(${Math.random()})`
+       // console.log(`Clicked Group ${this.$parent.$index}. Item ${this.$index}, ID is ${this.gitem.childid}`)
+      }
+    }
+  }
+</script>

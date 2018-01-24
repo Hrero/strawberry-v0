@@ -1,0 +1,4 @@
+
+  <view class="wrap">
+    <view><image mode="widthFix" src="/images/person/plan.png"/></view>
+  </view>

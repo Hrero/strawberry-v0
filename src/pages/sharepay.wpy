@@ -1,0 +1,82 @@
+<style lang="less" scope="scope">
+  .payDownImg{width: 400rpx;height: 400rpx;margin: 30rpx auto 0;}
+  .payDownImg image{width: 100%;}
+  .payLostTime{color: #666666;font-size: 22rpx;text-align: center;margin-top: 60rpx;}
+  .payLostTime text{color: #ff7b6a;}
+  .payDownBtn{margin: 70rpx auto 40rpx;background: #ff686b;color: #fff;line-height: 80rpx;width:500rpx;height: 80rpx;text-align: center;border-radius: 40rpx;}
+  .payArgeeTxt{display:flex;justify-content:center;align-items:center;color: #666666;font-size: 20rpx;text-align: center;margin-top: 70rpx;}
+  .paybuleTxt{color: #8cbcf1;}
+</style>
+<template>
+  <view class="paycontainer">
+  <infoHeader title="sharepay"></infoHeader>
+  <view class="payDownImg">
+    <image mode="widthFix" src="/images/startschool/jiage@3x.png"></image>
+  </view>
+  <!--<view class="payLostTime">您还剩<text>10:00</text>分钟支付，逾时将恢复原价</view>-->
+  <view class="payArgeeTxt">
+
+    <checkbox-group bindchange="checkboxChange">
+      <label >
+        <checkbox value="1" checked="false" class="payCheckBox" />
+      </label>
+    </checkbox-group>
+
+    我已阅读并同意<text class="paybuleTxt" @tap="goXieyi">《草莓书院用户协议》</text></view>
+  <button class="payDownBtn" disabled="{{disabled}}"
+          style="background-color:{{ disabled?'#cccccc':'#fd696e' }};color: {{ disabled?'#ffffff':'#ffffff' }};"
+          @tap="JumpReport">支付学费</button>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  import Toast from 'wepy-com-toast'
+  import InfoHeader from '../components/shareinfoheader'
+  import testMixin from '../mixins/test'
+
+  export default class PayIndex extends wepy.page {
+
+    config = {
+      navigationBarTitleText: '支付页'
+    }
+    components = {
+      infoHeader: InfoHeader
+    }
+    mixins = [testMixin]
+
+    data = {
+      userInfo: {
+        nickName:'',
+        avatarUrl:''
+      },
+      disabled:false
+    }
+
+    methods = {
+      JumpReport(){
+
+        wx.navigateTo({
+          url: '/pages/sharereport?id=1'
+        })
+      },
+      goXieyi(){
+        wx.navigateTo({
+          url: '/pages/sharexieyi'
+        })
+      },
+      checkboxChange(e) {
+        var self = this;
+        if( e.detail.value.length == 1 ){
+          self.disabled = false;
+        }else{
+          self.disabled = true;
+        }
+
+      }
+    }
+
+    onLoad(){
+
+    }
+  }
+</script>

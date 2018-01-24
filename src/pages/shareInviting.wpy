@@ -1,0 +1,59 @@
+<style lang="less" scope="scope">
+  .ShareInving{width: 100%;overflow: hidden;font-size: 30rpx;line-height: 60rpx;margin-bottom: 30rpx;}
+  .InviTitle{width: 25%;color: #333333;}
+.InviContent{width: 75%;color: #666666;}
+  .container{margin-top: 40rpx;}
+  .invitinFriend{margin-top:150rpx;background: #ff686b;height: 630rpx;height: 84rpx;border-radius: 40rpx;text-align: center;line-height: 84rpx;color: #fff;}
+.inviColer{font-size: 20rpx;color: #ff686b;line-height: 50rpx;margin-top: 30rpx;}
+</style>
+<template>
+  <view class="container">
+    <view class="ShareInving">
+      <view class="InviTitle fl">邀请奖励:</view>
+      <view class="InviContent fr">每成功邀请一位好友，奖励10元 现金红包</view>
+    </view>
+    <view class="ShareInving">
+      <view class="InviTitle fl">邀请资格:</view>
+      <view class="InviContent fr">草莓书院学员</view>
+    </view>
+    <view class="ShareInving">
+      <view class="InviTitle fl">邀请流程:</view>
+      <view class="InviContent fr">您的好友报名成功后，请将好友分班成功页面全屏截图以及好友联系方式（需要与好友报名时填写的联系方式一致）截图发给草莓书院客服微信（微信号：caomei01）,工作人员审核后将红包发送至您的微信</view>
+    </view>
+    <view class="invitinFriend">立即邀请</view>
+    <view class="inviColer">注意：好友信息不可重复使用，请在好友报名成功后第一时间领 取，最终解释权归草莓书院所有</view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Toast from 'wepy-com-toast'
+  import testMixin from '../mixins/test'
+
+  export default class Inviting extends wepy.page {
+
+    config = {
+      navigationBarTitleText: '邀请页'
+    }
+
+    components = {
+    }
+
+    mixins = [testMixin]
+
+    data = {
+      userInfo: {
+        nickName:'',
+        avatarUrl:''
+      },
+      isShow: true
+    }
+
+    methods = {
+      JumpReport(){}
+    }
+    onLoad(){
+
+    }
+  }
+</script>

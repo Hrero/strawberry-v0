@@ -1,0 +1,70 @@
+
+  <view class="PerSoncon">
+    <view class="weekTop">
+      <view class="fl weekTopLeft">
+        <view class="userinfo">
+          <image mode="widthFix" src="{{ userInfo.avatarUrl }}" background-size="cover"/>
+        </view>
+      </view>
+      <view class="weekTopRight">
+        <view class="weekMarBottom">
+          <view class="fl">姓名：</view>
+          <view class="weekTxtR">aa</view>
+        </view>
+        <view class="weekMarBottom">
+          <view class="fl">班级：</view>
+          <view class="weekTxtR">西柚班</view>
+        </view>
+        <view>
+          <view class="fl">学号：</view>
+          <view class="weekTxtR">20170918</view>
+        </view>
+      </view>
+    </view>
+    
+  <view>
+    <view class="personinfo">
+      <view class="fl perInfo">
+        <view class="perNum">10</view>
+        <view class="perBook">Books(已读书籍)</view>
+      </view>
+      <view class="fr perInfo peryou">
+        <view class="perline"/>
+        <view class="perNum">10</view>
+        <view class="perBook">Books(已读书籍)</view>
+      </view>
+    </view>
+  </view>
+
+    <view class="personalList">
+      <view class="personalView" bindtap="goxuefen">
+        <image class="personIcon" mode="widthFix" src="/images/person/13@3x.png"/>
+        <text>学分查询</text>
+        <image class="personJt" mode="widthFix" src="/images/person/2.png"/>
+      </view>
+      <view class="personalView" bindtap="goplan">
+        <image class="personIcon" mode="widthFix" src="/images/person/14@3x.png"/>
+        <text>学习计划</text>
+        <image class="personJt" mode="widthFix" src="/images/person/2.png"/>
+      </view>
+      <view class="personalView" bindtap="goenchiridion">
+        <image class="personIcon" mode="widthFix" src="/images/person/15@3x.png"/>
+        <text>学员手册</text>
+        <image class="personJt" mode="widthFix" src="/images/person/2.png"/>
+      </view>
+    </view>
+
+    <view class="personalList maTop">
+      <view class="personalView" bindtap="goinvitefriends">
+        <image class="personIcon" mode="widthFix" src="/images/person/10@3x.png"/>
+        <text>邀请好友</text>
+        <image class="personJt" mode="widthFix" src="/images/person/2.png"/>
+      </view>
+      <view class="personalView" bindtap="gofeedBack">
+        <image class="personIcon" mode="widthFix" src="/images/person/11@3x.png"/>
+        <text>意见反馈</text>
+        <image class="personJt" mode="widthFix" src="/images/person/2.png"/>
+      </view>
+    </view>
+
+  </view>

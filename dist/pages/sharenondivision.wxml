@@ -1,0 +1,47 @@
+
+  <view class="">
+    
+  <view class="shareWrapHead">
+    <view class="payUserInfo">
+      <view class="userinfo">
+        <image class="userinfo-avatar fl" src="{{ $infoHeader$userInfo.avatarUrl }}" background-size="cover"/>
+        <view class="userinfo-nickname fr">{{ $infoHeader$userInfo.nickName }}</view>
+      </view>
+    </view>
+    <view class="PayImgIcon">
+      <view class="PayimgView"><image class="{{ $infoHeader$title== 'sharepay' || 'sharereport' || 'sharenondivision' || 'sharetermbegins'?'widthImg':''}}" mode="widthFix" src="{{$infoHeader$payimg[0]}}"/></view>
+      <view class="payLine"/>
+      <view class="PayimgView"><image class="{{ $infoHeader$title == 'sharereport' || $infoHeader$title == 'sharenondivision' || $infoHeader$title == 'sharetermbegins' ?'widthImg' : '' }}" mode="widthFix" src="{{$infoHeader$payimg[1]}}"/></view>
+      <view class="payLine"/>
+      <view class="PayimgView"><image class="{{ $infoHeader$title == 'sharenondivision' || $infoHeader$title == 'sharetermbegins'?'widthImg' : '' }}" mode="widthFix" src="{{$infoHeader$payimg[2]}}"/></view>
+      <view class="payLine"/>
+      <view class="PayimgView"><image class="{{ $infoHeader$title == 'sharetermbegins'?'widthImg' : '' }}" mode="widthFix" src="{{$infoHeader$payimg[3]}}"/></view>
+    </view>
+    <view class="payTxtName">
+      <view>付费</view>
+      <view class="payTxtLine"/>
+      <view>报到</view>
+      <view class="payTxtLine"/>
+      <view>分班</view>
+      <view class="payTxtLine"/>
+      <view>开学</view>
+    </view>
+  </view>
+
+    <view class="DivisionBlock">
+
+      <view  wx:if="{{isShow}}">
+        <view class="NonDivTitle">恭喜您报到成功，成为草莓书院第五期学员</view>
+        <view class="ShareHeight">分班时间：2017.11.20</view>
+        <view class="ShareHeight">开学时间：2017.11.27</view>
+      </view>
+
+      <view  wx:else class="ShareGoTop">
+        <view class="ShareHeight Shareclo">恭喜您分班成功</view>
+        <view class="ShareHeight Shareclo">您所在的班级为「西柚班」</view>
+        <view class="ShareHeight shareTop">开学时间：2017.11.27</view>
+      </view>
+
+    </view>
+  </view>
+  <view class="DivisionImg"><image mode="widthFix" src="/images/startschool/hongbao@3x.png"/></view>
